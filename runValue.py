@@ -1,10 +1,8 @@
-# Program Name: PCB Run Value Assessment (Preliminary Code)
-# Program Function: assigning the value of runs for individual cricketers across three competitive formats: first class, t20, ODI
+# Program Name: PCB Player Ranking Algorithm (Preliminary Code)
+# Program Function: ranking individual cricketers via run value across three competitive formats: first class, t20, ODI
 # Program Author: Mohi Andrabi, Jehangir Amjad PhD
 # Creation Date: March 16, 2025
 # Location: Los Angeles, CA
-
-# NOTE: Formulas were adapted from those listed in Google Sheets, which differed slightly from those listed in Algorithm write-up
 
 # -- Main Script -- #
 
@@ -26,6 +24,10 @@ listAStats = pd.read_csv(r"C:\Users\Mohi Andrabi\Documents\GitHub\pcb_teamSelect
 • ai,j : batting average of player i in format j
 • si,j : strike rate of player i in format j
 '''
+runValues_t20 = pd.DataFrame() # create an empty dataframe, to be populated later with run value data
+runValues_fc = pd.DataFrame() 
+runValues_listA = pd.DataFrame() 
+
 summaryStats = pd.DataFrame(columns = ['FORMAT', 'STD_DEV', 'AVERAGE', 'SHIFT']) # empty dataframe, to be populated later with summary statistics for all formats
 
 # -------------------------------------------------------------- #
@@ -34,7 +36,6 @@ summaryStats = pd.DataFrame(columns = ['FORMAT', 'STD_DEV', 'AVERAGE', 'SHIFT'])
 # -------------------------------------------------------------- #
 
 players = t20Stats['Sr.'].nunique() # Get the length of the entire dataset
-runValues = pd.DataFrame() # create an empty dataframe, to be populated later with run value data
 names = []
 values = []
 valuesNorm = []
@@ -48,45 +49,45 @@ for i in range(0, players):
     values.append(runValue)
     valuesNorm.append(runValue_normalized)
 
-# Add Player Names and Corresponding Runs Value to the runValues dataframe
-runValues['Player'] = names
-runValues['Run Value'] = values
-runValues['Run Value - Normalized'] = valuesNorm
-runValues = runValues.fillna(0) # replace any nan values with 0
+# Add Player Names and Corresponding Runs Value to the runValues_t20 dataframe
+runValues_t20['Player'] = names
+runValues_t20['Run Value'] = values
+runValues_t20['Run Value - Normalized'] = valuesNorm
+runValues_t20 = runValues_t20.fillna(0) # replace any nan values with 0
 
 # Summary Statistics 
-average_t20 = runValues['Run Value'].mean() # Average Run Value for T20 Run Values
-std_t20 = runValues['Run Value'].std() # Standard Deviation Across T20 Run Values
-min_t20 = abs(runValues['Run Value'].min())*1.1 # Minimum value runs for T20 
+average_t20 = runValues_t20['Run Value'].mean() # Average Run Value for T20 Run Values
+std_t20 = runValues_t20['Run Value'].std() # Standard Deviation Across T20 Run Values
+min_t20 = abs(runValues_t20['Run Value'].min())*1.1 # Minimum value runs for T20 
 
 summaryStats.loc[0] = ['T20', average_t20, std_t20, min_t20] # Append summaryStats dataframe
 
 # Standardized Runs
 
 stdRuns = []
-for i in range(len(runValues['Player'])):
-    stdRun = (runValues.at[runValues.index[i], 'Run Value'] - average_t20)/std_t20
+for i in range(len(runValues_t20['Player'])):
+    stdRun = (runValues_t20.at[runValues_t20.index[i], 'Run Value'] - average_t20)/std_t20
     stdShift = stdRun + min_t20
     stdRuns.append(stdRun)
-runValues['Standardized Runs'] = stdRuns
+runValues_t20['Standardized Runs'] = stdRuns
 
-min_scale_shift = abs(runValues['Standardized Runs'].min())
+min_scale_shift = abs(runValues_t20['Standardized Runs'].min())
 
-default_stdV = round((35/100) * (len(runValues['Player']) - 1) + 1) #
+default_stdV = round((35/100) * (len(runValues_t20['Player']) - 1) + 1) #
 
 default_stdV_shifted = default_stdV + (1.1 * min_scale_shift) # shift the default score
 
 # Shift Standardized Scores
 std_shift = []
-for i in range(len(runValues['Player'])):
-    std_score_shifted = runValues.at[runValues.index[i], 'Standardized Runs'] + (1.1 * min_scale_shift)
+for i in range(len(runValues_t20['Player'])):
+    std_score_shifted = runValues_t20.at[runValues_t20.index[i], 'Standardized Runs'] + (1.1 * min_scale_shift)
     std_shift.append(std_score_shifted)
-    
-runValues['Standardized Runs - Shifted'] = std_shift
+
+runValues_t20['Standardized Runs - Shifted'] = std_shift
 
 
 
-runValues.to_csv(f't20 Run Values - {str(date.today())}.csv', index=False) # write the run value data to a .csv file, stored in the working directory
+runValues_t20.to_csv(f't20 Run Values - {str(date.today())}.csv', index=False) # write the run value data to a .csv file, stored in the working directory
 
 
 # -------------------------------------------------------------- #
@@ -94,7 +95,6 @@ runValues.to_csv(f't20 Run Values - {str(date.today())}.csv', index=False) # wri
 #             Formula = ((xi,F/2) * (ai,F/150)) * 0.5            #
 # -------------------------------------------------------------- #
 players = listAStats['Sr.'].nunique() 
-runValues = pd.DataFrame() 
 names = []
 values = []
 
@@ -104,26 +104,49 @@ for i in range(0, players):
     names.append(name)
     values.append(runValue)
 
-runValues['Player'] = names
-runValues['Run Value'] = values
-runValues = runValues.fillna(0)
+runValues_fc['Player'] = names
+runValues_fc['Run Value'] = values
+runValues_fc = runValues_fc.fillna(0)
 
-average_fc = runValues['Run Value'].mean() # Calculate the Average Run Value for T20 Run Values
-std_fc = runValues['Run Value'].std() # Calculate the Standard Deviation For T20 Run Values
-min_fc = abs(runValues['Run Value'].min())*1.1 # Calculate the minimum value runs for T20 
+average_fc = runValues_fc['Run Value'].mean() # Calculate the Average Run Value for T20 Run Values
+std_fc = runValues_fc['Run Value'].std() # Calculate the Standard Deviation For T20 Run Values
+min_fc = abs(runValues_fc['Run Value'].min())*1.1 # Calculate the minimum value runs for T20 
 
 summaryStats.loc[1] = ['First Class', average_fc, std_fc, min_fc]
 
-runValues.to_csv(f'First Class Run Values - {str(date.today())}.csv', index=False) 
+# Standardized Runs
+
+stdRuns = []
+for i in range(len(runValues_fc['Player'])):
+    stdRun = (runValues_fc.at[runValues_fc.index[i], 'Run Value'] - average_fc)/std_fc
+    stdShift = stdRun + min_t20
+    stdRuns.append(stdRun)
+runValues_fc['Standardized Runs'] = stdRuns
+
+min_scale_shift = abs(runValues_fc['Standardized Runs'].min())
+
+default_stdV = round((35/100) * (len(runValues_fc['Player']) - 1) + 1) #
+
+default_stdV_shifted = default_stdV + (1.1 * min_scale_shift) # shift the default score
+
+# Shift Standardized Scores
+std_shift = []
+for i in range(len(runValues_fc['Player'])):
+    std_score_shifted = runValues_fc.at[runValues_fc.index[i], 'Standardized Runs'] + (1.1 * min_scale_shift)
+    std_shift.append(std_score_shifted)
+    
+runValues_fc['Standardized Runs - Shifted'] = std_shift
+
+
+
+runValues_fc.to_csv(f'First Class Run Values - {str(date.today())}.csv', index=False) 
 
 
 # -------------------------------------------------------------- #
 #                     List A Run Values                          #
 #         Formula: ((xi,A) * (ai,A/100) * (si,A/100)) *0.2       #
 # -------------------------------------------------------------- #
-
 players = listAStats['Sr.'].nunique() 
-runValues = pd.DataFrame() 
 names = []
 values = []
 
@@ -133,17 +156,49 @@ for i in range(0, players):
     names.append(name)
     values.append(runValue)
 
-runValues['Player'] = names
-runValues['Run Value'] = values
-runValues = runValues.fillna(0)
+runValues_listA['Player'] = names
+runValues_listA['Run Value'] = values
+runValues_listA = runValues_listA.fillna(0)
 
-average_listA = runValues['Run Value'].mean() # Calculate the Average Run Value for T20 Run Values
-std_listA = runValues['Run Value'].std() # Calculate the Standard Deviation For T20 Run Values
-min_listA = abs(runValues['Run Value'].min())*1.1 # Calculate the minimum value runs for T20 
+average_listA = runValues_listA['Run Value'].mean() # Calculate the Average Run Value for T20 Run Values
+std_listA = runValues_listA['Run Value'].std() # Calculate the Standard Deviation For T20 Run Values
+min_listA = abs(runValues_listA['Run Value'].min())*1.1 # Calculate the minimum value runs for T20 
 
 summaryStats.loc[2] = ['List A', average_listA, std_listA, min_listA]
 
-runValues.to_csv(f'List A Run Values - {str(date.today())}.csv', index=False) 
+# Standardized Runs
+
+stdRuns = []
+for i in range(len(runValues_listA['Player'])):
+    stdRun = (runValues_listA.at[runValues_listA.index[i], 'Run Value'] - average_listA)/std_listA
+    stdShift = stdRun + min_t20
+    stdRuns.append(stdRun)
+
+runValues_listA['Standardized Runs'] = stdRuns
+
+min_scale_shift = abs(runValues_listA['Standardized Runs'].min())
+
+default_stdV = round((35/100) * (len(runValues_listA['Player']) - 1) + 1) 
+
+default_stdV_shifted = default_stdV + (1.1 * min_scale_shift) # shift the default score
+
+# Shift Standardized Scores
+std_shift = []
+for i in range(len(runValues_listA['Player'])):
+    std_score_shifted = runValues_listA.at[runValues_listA.index[i], 'Standardized Runs'] + (1.1 * min_scale_shift)
+    std_shift.append(std_score_shifted)
+    
+runValues_listA['Standardized Runs - Shifted'] = std_shift
+
+
+runValues_listA.to_csv(f'List A Run Values - {str(date.today())}.csv', index=False) 
 
 summaryStats.to_csv(f'Summary Statistics - All Formats - {str(date.today())}.csv', index=False) # write the summary statistics data for all formats to a .csv file in the working directory
 
+# --------------------------------------------- # 
+# Final Scores -- Require Further Clarification #
+# --------------------------------------------- #
+
+# for i in len(runValues_fc['Player']):
+#     finalScore = max()
+# zi = max{dF , 0.5ri,F + 0.3ri,A + 0.2ri,T }
