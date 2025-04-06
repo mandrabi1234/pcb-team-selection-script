@@ -62,6 +62,7 @@ min_t20 = abs(runValues['Run Value'].min())*1.1 # Minimum value runs for T20
 summaryStats.loc[0] = ['T20', average_t20, std_t20, min_t20] # Append summaryStats dataframe
 
 # Standardized Runs
+
 stdRuns = []
 for i in range(len(runValues['Player'])):
     stdRun = (runValues.at[runValues.index[i], 'Run Value'] - average_t20)/std_t20
@@ -71,12 +72,17 @@ runValues['Standardized Runs'] = stdRuns
 
 min_scale_shift = abs(runValues['Standardized Runs'].min())
 
-default_stdV = round((35/100) * (len(runValues['Player']) - 1) + 1)
+default_stdV = round((35/100) * (len(runValues['Player']) - 1) + 1) #
 
-default_stdV_shifted = default_stdV + (1.1 * min_scale_shift)
+default_stdV_shifted = default_stdV + (1.1 * min_scale_shift) # shift the default score
+
 # Shift Standardized Scores
+std_shift = []
 for i in range(len(runValues['Player'])):
     std_score_shifted = runValues.at[runValues.index[i], 'Standardized Runs'] + (1.1 * min_scale_shift)
+    std_shift.append(std_score_shifted)
+    
+runValues['Standardized Runs - Shifted'] = std_shift
 
 
 
