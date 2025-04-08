@@ -15,9 +15,9 @@ from datetime import date
 
 # *summaryStats* - calculate the average runs, standard deviation, and minimum value runs for a given format
 def summaryStats(dataFrame):
-    print(dataFrame['Run Value - Normalized'])
-    average = dataFrame['Run Value - Normalized'].mean() # Average Run Value for T20 Run Values
-    std = dataFrame['Run Value - Normalized'].std() # Standard Deviation Across T20 Run Values
+
+    average = dataFrame['Run Value'].mean() # Average Run Value for T20 Run Values
+    std = dataFrame['Run Value'].std() # Standard Deviation Across T20 Run Values
     minV = round((abs(dataFrame['Run Value'].min())), 5) # Minimum value runs for T20 
     
     return average, std, minV
@@ -58,32 +58,26 @@ def runValue_Calc(format, runs_divisor, average_divisor, strikeRate_divisor, dat
     # Empty arrays, to be populated later
     names = []
     values = []
-    valuesNorm = []
 
     # Calculate run values for First Class (fc) cricket
     if format == 'fc':
         for i in range(0, players):
             name = dataFrame.at[dataFrame.index[i], 'Player']
             runValue = ((dataFrame.at[dataFrame.index[i], 'Runs'])/runs_divisor) * ((dataFrame.at[dataFrame.index[i], 'Ave'])/average_divisor)
-            runValue_normalized = (dataFrame.at[dataFrame.index[i], 'Runs']/runs_divisor) * ((dataFrame.at[dataFrame.index[i], 'Ave'])/average_divisor)
             names.append(name)
             values.append(runValue)
-            valuesNorm.append(runValue_normalized)
 
     # Calculate run values for List A and T20 cricket
     else:
         for i in range(0, players):
             name = dataFrame.at[dataFrame.index[i], 'Player']
             runValue = ((dataFrame.at[dataFrame.index[i], 'Runs'])) * ((dataFrame.at[dataFrame.index[i], 'Ave'])/average_divisor) * ((dataFrame.at[dataFrame.index[i], 'SR'])/strikeRate_divisor)
-            runValue_normalized = (dataFrame.at[dataFrame.index[i], 'Runs']) * ((dataFrame.at[dataFrame.index[i], 'Ave'])/average_divisor) * ((dataFrame.at[dataFrame.index[i], 'SR'])/strikeRate_divisor)
             names.append(name)
             values.append(runValue)
-            valuesNorm.append(runValue_normalized)
     
     # Append the runData dataframe with player names, and their corresponding run values
     runData['Player'] = names
     runData['Run Value'] = values
-    runData['Run Value - Normalized'] = valuesNorm
 
     runData = runData.fillna(0) # replace any NAN values with 0
 
