@@ -49,7 +49,7 @@ def standardizedRuns(dataFrame, average, std, minV):
     return dataFrame, default_stdV, default_stdV_shifted
 
 # *runValue_Calc* - calculate the run values—raw and normalized—per player, for a given format
-def runValue_Calc(format, runs_quotient, average_quotient, strikeRate_quotient, runValue_weight, minimumVal_mtplr, dataFrame): # if calculating FC stats, list strikeRate_quotient as 0
+def runValue_Calc(format, runs_divisor, average_divisor, strikeRate_divisor, runValue_weight, minimumVal_mtplr, dataFrame): # if calculating FC stats, list strikeRate_divisor as 0
     
     runData = pd.DataFrame() # empty dataframe, to be populated later
     players = dataFrame['Sr.'].nunique() # Get the length of the entire dataset
@@ -63,8 +63,8 @@ def runValue_Calc(format, runs_quotient, average_quotient, strikeRate_quotient, 
     if format == 'fc':
         for i in range(0, players):
             name = dataFrame.at[dataFrame.index[i], 'Player']
-            runValue = ((dataFrame.at[dataFrame.index[i], 'Runs'])/runs_quotient) * ((dataFrame.at[dataFrame.index[i], 'Ave'])/average_quotient) * runValue_weight
-            runValue_normalized = (dataFrame.at[dataFrame.index[i], 'Runs']/runs_quotient) * ((dataFrame.at[dataFrame.index[i], 'Ave'])/average_quotient)
+            runValue = ((dataFrame.at[dataFrame.index[i], 'Runs'])/runs_divisor) * ((dataFrame.at[dataFrame.index[i], 'Ave'])/average_divisor) * runValue_weight
+            runValue_normalized = (dataFrame.at[dataFrame.index[i], 'Runs']/runs_divisor) * ((dataFrame.at[dataFrame.index[i], 'Ave'])/average_divisor)
             names.append(name)
             values.append(runValue)
             valuesNorm.append(runValue_normalized)
@@ -73,8 +73,8 @@ def runValue_Calc(format, runs_quotient, average_quotient, strikeRate_quotient, 
     else:
         for i in range(0, players):
             name = dataFrame.at[dataFrame.index[i], 'Player']
-            runValue = ((dataFrame.at[dataFrame.index[i], 'Runs'])) * ((dataFrame.at[dataFrame.index[i], 'Ave'])/average_quotient) * ((dataFrame.at[dataFrame.index[i], 'SR'])/strikeRate_quotient) * runValue_weight
-            runValue_normalized = (dataFrame.at[dataFrame.index[i], 'Runs']) * ((dataFrame.at[dataFrame.index[i], 'Ave'])/average_quotient) * ((dataFrame.at[dataFrame.index[i], 'SR'])/strikeRate_quotient)
+            runValue = ((dataFrame.at[dataFrame.index[i], 'Runs'])) * ((dataFrame.at[dataFrame.index[i], 'Ave'])/average_divisor) * ((dataFrame.at[dataFrame.index[i], 'SR'])/strikeRate_divisor) * runValue_weight
+            runValue_normalized = (dataFrame.at[dataFrame.index[i], 'Runs']) * ((dataFrame.at[dataFrame.index[i], 'Ave'])/average_divisor) * ((dataFrame.at[dataFrame.index[i], 'SR'])/strikeRate_divisor)
             names.append(name)
             values.append(runValue)
             valuesNorm.append(runValue_normalized)
