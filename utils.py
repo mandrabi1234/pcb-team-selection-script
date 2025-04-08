@@ -14,10 +14,11 @@ from datetime import date
 '''
 
 # *summaryStats* - calculate the average runs, standard deviation, and minimum value runs for a given format
-def summaryStats(dataFrame, minimumVal_mtplr):
-    average = dataFrame['Run Value'].mean() # Average Run Value for T20 Run Values
-    std = dataFrame['Run Value'].std() # Standard Deviation Across T20 Run Values
-    minV = abs(dataFrame['Run Value'].min()) * minimumVal_mtplr # Minimum value runs for T20 
+def summaryStats(dataFrame):
+    print(dataFrame['Run Value - Normalized'])
+    average = dataFrame['Run Value - Normalized'].mean() # Average Run Value for T20 Run Values
+    std = dataFrame['Run Value - Normalized'].std() # Standard Deviation Across T20 Run Values
+    minV = round((abs(dataFrame['Run Value'].min())), 5) # Minimum value runs for T20 
     
     return average, std, minV
 
@@ -49,7 +50,7 @@ def standardizedRuns(dataFrame, average, std, minV):
     return dataFrame, default_stdV, default_stdV_shifted
 
 # *runValue_Calc* - calculate the run values—raw and normalized—per player, for a given format
-def runValue_Calc(format, runs_divisor, average_divisor, strikeRate_divisor, runValue_weight, minimumVal_mtplr, dataFrame): # if calculating FC stats, list strikeRate_divisor as 0
+def runValue_Calc(format, runs_divisor, average_divisor, strikeRate_divisor, dataFrame): # if calculating FC stats, list strikeRate_divisor as 0
     
     runData = pd.DataFrame() # empty dataframe, to be populated later
     players = dataFrame['Sr.'].nunique() # Get the length of the entire dataset
@@ -63,7 +64,7 @@ def runValue_Calc(format, runs_divisor, average_divisor, strikeRate_divisor, run
     if format == 'fc':
         for i in range(0, players):
             name = dataFrame.at[dataFrame.index[i], 'Player']
-            runValue = ((dataFrame.at[dataFrame.index[i], 'Runs'])/runs_divisor) * ((dataFrame.at[dataFrame.index[i], 'Ave'])/average_divisor) * runValue_weight
+            runValue = ((dataFrame.at[dataFrame.index[i], 'Runs'])/runs_divisor) * ((dataFrame.at[dataFrame.index[i], 'Ave'])/average_divisor)
             runValue_normalized = (dataFrame.at[dataFrame.index[i], 'Runs']/runs_divisor) * ((dataFrame.at[dataFrame.index[i], 'Ave'])/average_divisor)
             names.append(name)
             values.append(runValue)
@@ -73,7 +74,7 @@ def runValue_Calc(format, runs_divisor, average_divisor, strikeRate_divisor, run
     else:
         for i in range(0, players):
             name = dataFrame.at[dataFrame.index[i], 'Player']
-            runValue = ((dataFrame.at[dataFrame.index[i], 'Runs'])) * ((dataFrame.at[dataFrame.index[i], 'Ave'])/average_divisor) * ((dataFrame.at[dataFrame.index[i], 'SR'])/strikeRate_divisor) * runValue_weight
+            runValue = ((dataFrame.at[dataFrame.index[i], 'Runs'])) * ((dataFrame.at[dataFrame.index[i], 'Ave'])/average_divisor) * ((dataFrame.at[dataFrame.index[i], 'SR'])/strikeRate_divisor)
             runValue_normalized = (dataFrame.at[dataFrame.index[i], 'Runs']) * ((dataFrame.at[dataFrame.index[i], 'Ave'])/average_divisor) * ((dataFrame.at[dataFrame.index[i], 'SR'])/strikeRate_divisor)
             names.append(name)
             values.append(runValue)
@@ -86,7 +87,7 @@ def runValue_Calc(format, runs_divisor, average_divisor, strikeRate_divisor, run
 
     runData = runData.fillna(0) # replace any NAN values with 0
 
-    average, std, minV = summaryStats(runData, minimumVal_mtplr) # calculate summary statistics
+    average, std, minV = summaryStats(runData) # calculate summary statistics
 
     runData, default_stdV, default_stdV_shifted = standardizedRuns(runData, average, std, minV) # calculate standardized run values
 
@@ -125,8 +126,6 @@ def finalScore_Calc(runData_fc, runData_t20, runData_listA, fc_default_stdV_shif
         calcScore_listA = scoreCalc(runData_listA, 0.2, i)
         calcScore_t20 = scoreCalc(runData_t20, 0.3, i)
         calcScore_final = calcScore_fc + calcScore_listA + calcScore_t20 # add up the individual format scores to get a final score
-        print(calcScore_final)
-        print(fc_default_stdV_shifted)
         finalScore = max(fc_default_stdV_shifted, calcScore_final) # compare final score vs default score, take the larger value
         
         finalScores.append(finalScore) # append the finalScores array with the player's assigned final score

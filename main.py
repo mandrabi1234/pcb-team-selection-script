@@ -14,9 +14,9 @@ listAStats = pd.read_csv(r"LOCAL DIRECTORY\data\Player Values - Last 3 Seasons.x
 summaryStats = pd.DataFrame(columns = ['FORMAT', 'STD_DEV', 'AVERAGE', 'SHIFT']) # empty dataframe, to be populated later with summary statistics for all formats
 
 # Calculate run values, per player, for each format
-fc_Stats, fc_default_stdV, fc_default_stdV_shifted, average_fc, std_fc, minV_fc = runValue_Calc('fc', 2, 150, 0, 0.5, 1.1, fcStats)
-t20_Stats, t20_default_stdV, t20_default_stdV_shifted, average_t20, std_t20, minV_t20 = runValue_Calc('t20', 1, 150, 50, 0.3, 1.1, t20Stats)
-listA_Stats, listA_default_stdV, lisA_default_stdV_shifted, average_listA, std_listA, minV_listA = runValue_Calc('list A', 1, 100, 100, 0.2, 1.1, listAStats)
+fc_Stats, fc_default_stdV, fc_default_stdV_shifted, average_fc, std_fc, minV_fc = runValue_Calc('fc', 2, 150, 0, fcStats)
+t20_Stats, t20_default_stdV, t20_default_stdV_shifted, average_t20, std_t20, minV_t20 = runValue_Calc('t20', 1, 150, 50, t20Stats)
+listA_Stats, listA_default_stdV, lisA_default_stdV_shifted, average_listA, std_listA, minV_listA = runValue_Calc('list A', 1, 100, 100, listAStats)
 
 # Append summaryStats dataframe with every format's data
 summaryStats.loc[0] = ['FC', average_fc, std_fc, minV_fc] 
