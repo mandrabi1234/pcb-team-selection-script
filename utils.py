@@ -25,17 +25,18 @@ def summaryStats(dataFrame, minimumVal_mtplr):
 def standardizedRuns(dataFrame, average, std, minV):
     stdRuns = [] # declare an empty array, to be populated later
 
+    # Iterate through the dataframe, and calculate the standardized runs for each player across the given format
     for i in range(len(dataFrame['Player'])):
         stdRun = (dataFrame.at[dataFrame.index[i], 'Run Value'] - average)/std
         stdShift = stdRun + minV
         stdRuns.append(stdRun)
     dataFrame['Standardized Runs'] = stdRuns
 
-    min_scale_shift = abs(dataFrame['Standardized Runs'].min())
+    min_scale_shift = abs(dataFrame['Standardized Runs'].min()) # calculate the minimum scale shift
 
-    default_stdV = round((35/100) * (len(dataFrame['Player']) - 1) + 1) #
+    default_stdV = dataFrame['Standardized Runs'].quantile(0.35) # calculate the default value (35th percentile)
 
-    default_stdV_shifted = default_stdV + (1.1 * min_scale_shift) # shift the default score
+    default_stdV_shifted = default_stdV + (1.1 * min_scale_shift) # shift the default value
 
     # Shift Standardized Scores
     std_shift = []
@@ -53,12 +54,12 @@ def runValue_Calc(format, runs_quotient, average_quotient, strikeRate_quotient, 
     runData = pd.DataFrame() # empty dataframe, to be populated later
     players = dataFrame['Sr.'].nunique() # Get the length of the entire dataset
 
-    # declare empty arrays, to be populated later
+    # Empty arrays, to be populated later
     names = []
     values = []
     valuesNorm = []
 
-    # calculate run values for First Class (fc) cricket
+    # Calculate run values for First Class (fc) cricket
     if format == 'fc':
         for i in range(0, players):
             name = dataFrame.at[dataFrame.index[i], 'Player']
@@ -68,7 +69,7 @@ def runValue_Calc(format, runs_quotient, average_quotient, strikeRate_quotient, 
             values.append(runValue)
             valuesNorm.append(runValue_normalized)
 
-    # calculate run values for List A and T20 cricket
+    # Calculate run values for List A and T20 cricket
     else:
         for i in range(0, players):
             name = dataFrame.at[dataFrame.index[i], 'Player']
@@ -78,7 +79,7 @@ def runValue_Calc(format, runs_quotient, average_quotient, strikeRate_quotient, 
             values.append(runValue)
             valuesNorm.append(runValue_normalized)
     
-    # append the runData dataframe with player names, and their corresponding run values
+    # Append the runData dataframe with player names, and their corresponding run values
     runData['Player'] = names
     runData['Run Value'] = values
     runData['Run Value - Normalized'] = valuesNorm
@@ -124,16 +125,19 @@ def finalScore_Calc(runData_fc, runData_t20, runData_listA, fc_default_stdV_shif
         calcScore_listA = scoreCalc(runData_listA, 0.2, i)
         calcScore_t20 = scoreCalc(runData_t20, 0.3, i)
         calcScore_final = calcScore_fc + calcScore_listA + calcScore_t20 # add up the individual format scores to get a final score
-
+        print(calcScore_final)
+        print(fc_default_stdV_shifted)
         finalScore = max(fc_default_stdV_shifted, calcScore_final) # compare final score vs default score, take the larger value
         
         finalScores.append(finalScore) # append the finalScores array with the player's assigned final score
         names.append(name) # append the names array with the player's name
 
-    # append the finalRank dataframe with the player's name and their assigned final score
+    # Append the finalRank dataframe with the player's name and their assigned final score
     finalRank['Player'] = names
     finalRank['Final Score'] = finalScores
-    
+
+    finalRank = finalRank.sort_values(by='Final Score', ascending=False) # sort the final rankings in descending order
+
     finalRank.to_csv(f'Final Player Rankings- {str(date.today())}.csv', index=False) # write the run value data to a .csv file, stored in the working directory
 
     return finalRank
