@@ -7,7 +7,7 @@ from datetime import date
 from utils import summaryStats, standardizedRuns, runValue_Calc, finalScore_Calc
 
 # Read In Run Data For All Formats From Local Directory
-fcStats = pd.read_csv(r"LOCAl DIRECTORY\data\Player Values - Last 3 Seasons.xlsx - FC Batting Value (1).csv")
+fcStats = pd.read_csv(r"LOCAL DIRECTORY\data\Player Values - Last 3 Seasons.xlsx - FC Batting Value (1).csv")
 t20Stats = pd.read_csv(r"LOCAL DIRECTORY\data\Player Values - Last 3 Seasons.xlsx - T20 Batting Value (1).csv")
 listAStats = pd.read_csv(r"LOCAL DIRECTORY\data\Player Values - Last 3 Seasons.xlsx - LIST A Batting Value (1).csv")
 
