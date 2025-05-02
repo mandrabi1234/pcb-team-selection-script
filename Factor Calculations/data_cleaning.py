@@ -14,3 +14,10 @@ def data_preprocessing(df):
     df["Opposition standing"] = df["Opposition standing"].apply(lambda x: ''.join(filter(str.isdigit, str(x))))
     df["Team standing"] = df["Team standing"].astype(float)
     df["Opposition standing"] = df["Opposition standing"].astype(float)
+
+    # Convert Dimissed Column from YES/NO to 1/0 (also correct some typos)
+    df.loc[df["Dismissed"] == "YES", "Dismissed"] = 1.0
+    df.loc[df["Dismissed"] == "YSE", "Dismissed"] = 1.0
+    df.loc[df["Dismissed"] == "NO", "Dismissed"] = 0.0
+    df.loc[df["Dismissed"].isna(), "Dismissed"] = 0.0    
+    df["Dismissed"] = df["Dismissed"].astype(float)
