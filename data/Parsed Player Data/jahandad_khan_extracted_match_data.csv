@@ -1,0 +1,17 @@
+Player ID,Match ID,Innings Number,Team Standing,Opposition Standing,Total Runs Of Own Team,Total Wickets Lost By Own Team,Total Balls Played By Own Team,Total Runs Of Opposition Team,Total Wickets Lost By Opposition Team,Total Balls Played By Opposition Team,Runs Made,Balls Consumed,Batting Position,Dismissed,Special Batting Talent,Balls Bowled,Wickets Taken,Maidens Bowled,Batters Dismissed,Special Bowling Talent,Tournament
+5,5,2,R 3,R 5,529,10,715,256,10,371,33,23,8,YES,,90,4,3,"1,4,5",,QAT
+5,5,4,R 3,R 5,72,4,84,493,10,742,,,,,,126,4,4,"2,3,6,8",,QAT
+5,2,1,3,4,336,5,300,203,10,337,,,,,,36,2,0,"2,4",,Champions One Day
+5,4,2,3,1,105,10,142,231,10,270,8,9,7,YES,,60,4,1,"1,5,9,11",,Champions One Day
+5,7,1,3,5,271,7,300,97,10,150,8,8,7,YES,,30,3,1,"1,3,4",,Champions One Day
+5,9,2,3,1,324,10,297,344,7,300,24,19,7,YES,,64,1,0,6,,Champions One Day
+5,12,2,3,4,251,10,297,263,9,300,36,31,8,YES,,36,0,0,,,Champions One Day
+5,2,1,1,4,216,3,120,181,10,115,27,15,1,YES,,,,,,,Champions T20
+5,17,1,1,2,147,9,120,118,10,111,19,9,8,YES,,18,3,0,"1,2,5",,Champions T20
+5,20,2,1,5,133,4,84,131,10,120,,,,,,24,0,0,,,Champions T20
+5,22,1,1,2,199,5,120,124,10,115,22,10,6,NO,,24,2,0,"1,9",,Champions T20
+5,1,1,1,4,320,8,300,250,7,270,51,27,8,NO,,34,0,0,,,President's Cup
+5,8,2,1,5,169,1,155,168,10,260,,,,,,30,2,0,"1,3",,President's Cup
+5,13,2,1,2,156,9,215,249,9,270,5,8,7,YES,,42,2,1,"6,9",,President's Cup
+5,15,2,1,3,224,8,258,220,10,265,0,4,8,YES,,48,1,0,2,,President's Cup
+5,18,2,4,1,271,10,257,342,9,300,1,4,5,YES,,42,1,0,9,,President's Cup

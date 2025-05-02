@@ -1,0 +1,22 @@
+Player ID,Match ID,Innings Number,Team Standing,Opposition Standing,Total Runs Made by Own Team,Total Wickets Lost by Own Team,Total Balls Played by Own Team,Total Runs Made by Opposition Team,Total Wickets Lost by Opposition Team,Total Balls Played by Opposition Team,Runs made,Balls consumed,Batting position,Dismissed,Special Batting Talent,Balls bowled,Wickets taken,Maidens bowled,Batters Dismissed,Special Bowling Talent,Tournament
+49,11,2,1,2,148,7,117,147.0,8.0,120.0,10,12,Opner,yes,No,,,,,No,National T20 2025
+49,17,2,1,3,110,3,86,107.0,10.0,109.0,37,31,Opner,yes,No,,,,,No,National T20 2025
+49,27,2,1,4,143,2,87,137.0,6.0,120.0,30,27,Opner,yes,No,,,,,No,National T20 2025
+49,36,2,1,2,151,10,113,184.0,10.0,120.0,0,4,Opner,yes,No,,,,,No,National T20 2025
+49,13,2,Triangular 1,5,439,10,802,263.0,10.0,453.0,26,41,Opner,yes,No,,,,,No,QAT 2025
+49,13,4,Triangular 1,5,37,0,35,212.0,10.0,467.0,32*,33,Opner,No,No,,,,,No,QAT 2025
+49,48,1,Triangular 1,Triangular 3,465,10,717,639.0,10.0,919.0,16,15,Opner,yes,No,,,,,No,QAT 2025
+49,48,3,Triangular 1,Triangular 3,260,6,402,,,,0,3,Opner,yes,No,,,,,No,QAT 2025
+49,49,2,Triangular 1,Triangular 2,245,10,510,258.0,10.0,481.0,55,127,Opner,yes,No,,,,,No,QAT 2025
+49,49,4,Triangular 1,Triangular 2,176,9,278,159.0,10.0,360.0,18,22,3,yes,No,,,,,No,QAT 2025
+49,3,2,5,2,278,10,282,328.0,10.0,298.0,39,30,Opner,yes,No,,,,,No,Champions One Day cup 2024-25
+49,6,2,5,1,192,10,263,284.0,9.0,300.0,0,12,Opner,yes,No,,,,,No,Champions One Day cup 2024-25
+49,7,2,5,3,97,10,150,271.0,7.0,300.0,0,2,Opner,yes,No,,,,,No,Champions One Day cup 2024-25
+49,10,1,5,4,326,10,297,310.0,8.0,300.0,47,41,Opner,yes,No,,,,,No,Champions One Day cup 2024-25
+49,3,1,5,4,160,8,120,161.0,2.0,96.0,37,32,Opner,yes,No,,,,,No,Champions T0 cup 2024-25
+49,9,2,5,1,185,9,120,190.0,4.0,120.0,24,19,3,yes,No,,,,,No,Champions T0 cup 2024-25
+49,13,1,5,4,106,9,120,109.0,4.0,90.0,0,3,3,yes,No,,,,,No,Champions T0 cup 2024-25
+49,25,1,7,3,270,10,503,435.0,10.0,702.0,13,17,2,yes,NO,,,,,No,President Trophy 2025
+49,25,3,7,3,340,10,519,176.0,5.0,212.0,10,23,1,yes,NO,,,,,No,President Trophy 2025
+49,33,1,7,9,346,10,617,147.0,10.0,419.0,7,17,2,yes,NO,,,,,No,President Trophy 2025
+49,33,4,7,9,110,3,96,306.0,10.0,453.0,9,9,1,yes,NO,,,,,No,President Trophy 2025

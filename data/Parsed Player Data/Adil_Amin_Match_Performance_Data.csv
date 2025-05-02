@@ -1,0 +1,10 @@
+Player ID,Match ID,Innings Number,Team standing,Opposition standing,Total Runs Made by Own Team,Total Wickets Lost by Own Team,Total Balls Played by Own Team,Total Runs Made by Opposition Team,Total Wickets Lost by Opposition Team,Total Balls Played by Opposition Team,Runs made,Balls consumed,Batting position,Dismissed,Special Batting Talent,Balls bowled,Wickets taken,Maidens bowled,Batters Dismissed,Special Bowling Talent,Tournament
+21,23,2,2,9,167,9,120,183,3,120,12,15,5,YES,NA,12,0,0,NA,NA,National T20
+21,35,2,2,7,140,7,116,138,7,120,4,5,4,YES,NA,DNB,NA,NA,NA,NA,National T20
+21,2,1,2,6,229,10,287,238,10,455,3,48,5,YES,NA,NA,NA,NA,NA,QAT,
+21,2,4,2,6,202,7,452,192,10,333,12,18,5,YES,NA,NA,NA,NA,NA,QAT,
+21,9,2,3,1,324,10,297,344,7,300,23,19,6,YES,NA,NA,NA,NA,NA,Champions One Day,
+21,12,2,3,4,251,10,297,263,9,300,0,3,3,YES,NA,54,2,0,"4,7",NA,Champions One Day
+21,1,2,4,1,250,7,270,320,8,300,62,73,5,YES,NA,18,0,0,NA,NA,President's Cup One-Day
+21,7,2,4,5,254,8,296,252,9,300,57,58,5,YES,NA,NA,NA,NA,NA,President's Cup One-Day,
+21,10,1,4,3,295,8,300,297,5,282,28,27,5,YES,NA,60,1,0,3,NA,President's Cup One-Day

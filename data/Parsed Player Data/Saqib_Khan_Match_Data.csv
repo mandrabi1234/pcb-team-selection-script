@@ -1,0 +1,20 @@
+Player ID,Match ID,Innings Number,Team Standing,Opposition Standing,Total Runs Made by Own Team,Total Wickets Lost by Own Team,Total Balls Played by Own Team,Total Runs Made by Opposition Team,Total Wickets Lost by Opposition Team,Total Balls Played by Opposition Team,Runs made,Balls consumed,Batting position,Dismissed,Special Batting Talent,Balls bowled,Wickets taken,Maidens bowled,Batters Dismissed,Special Bowling Talent,Tournament
+47,1,1.0,1,3,159.0,6.0,120.0,73,5,79,5*,2.0,11,No,Yes,0,0,0,0,yes,National T20 2025
+47,8,2.0,1,5,135.0,4.0,105.0,132,7,120,,,DNB,DNB,yes,25,3,0,"1,2,3",yes,National T20 2025
+47,15,1.0,1,2,171.0,5.0,120.0,134,10,113,20*,12.0,7,No,Yes,17,1,0,11,yes,National T20 2025
+47,34,2.0,2,2,148.0,8.0,120.0,155,9,120,4,2.0,8,yes,yes,6,0,0,0,yes,National T20 2025
+47,4,2.0,R4,Triangular 2,466.0,10.0,764.0,546,10,769,10,27.0,8,yes,yes,157,3,5,"6,7,11",yes,QAT 2025
+47,14,2.0,4,5,170.0,10.0,330.0,260,10,468,4,12.0,9,yes,yes,109,1,4,1,yes,QAT 2025
+47,24,1.0,4,3,145.0,10.0,228.0,198,10,243,21,11.0,8,yes,yes,84,4,0,"2,3,7,8",yes,QAT 2025
+47,33,1.0,4,6,356.0,10.0,449.0,288,10,519,24,17.0,8,yes,yes,147,4,4,"3,4,7,11",yes,QAT 2025
+47,45,2.0,4,2,214.0,10.0,382.0,248,10,435,36,51.0,7,yes,yes,121,2,6,"1,10",yes,QAT 2025
+47,45,4.0,4,2,102.0,10.0,153.0,266,9,229,11,6.0,7,yes,yes,109,3,4,"3,5,6",yes,QAT 2025
+47,3,1.0,5,4,160.0,8.0,120.0,161,2,96,10,7.0,7,yes,yes,25,0,0,0,yes,Champions T20 cup 2024-25
+47,8,2.0,5,3,159.0,10.0,118.0,194,5,120,2,3.0,8,yes,yes,18,0,0,0,yes,Champions T20 cup 2024-25
+47,3,2.0,2,4,113.0,1.0,69.0,111,10,228,,,DNB,DNB,No,49,3,2,"6,7,10",Yes,President Cup 2024-25
+47,11,2.0,2,1,344.0,8.0,282.0,379,4,300,8,4.0,8,Yes,No,61,2,0,"1,5",Yes,President Cup 2024-25
+47,12,2.0,2,3,276.0,8.0,251.0,275,9,252,7,11.0,8,Yes,No,44,2,0,"2,8",Yes,President Cup 2024-25
+47,4,2.0,2,4,172.0,10.0,325.0,171,10,372,0,3.0,10,yes,yes,67,1,2,3,yes,President Trophy 2024-25
+47,4,4.0,2,4,240.0,10.0,534.0,369,10,666,6,24.0,9,yes,yes,150,1,6,8,yes,President Trophy 2024-25
+47,6,2.0,2,1,414.0,9.0,589.0,93,10,259,8,8.0,10,yes,yes,51,3,2,"3,7,11",yes,President Trophy 2024-25
+47,6,,2,1,,,,215,10,405,,,DNB,DNB,yes,92,0,4,0,yes,President Trophy 2024-25

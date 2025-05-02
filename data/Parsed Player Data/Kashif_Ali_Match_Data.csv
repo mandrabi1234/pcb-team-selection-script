@@ -1,0 +1,15 @@
+Player ID,Match ID,Innings Number,Team Standing,Opposition Standing,Total Runs Made by Own Team,Total Wickets Lost by Own Team,Total Balls Played by Own Team,Total Runs Made by Opposition Team,Total Wickets Lost by Opposition Team,Total Balls Played by Opposition Team,Runs made,Balls consumed,Batting position,Dismissed,Special Batting Talent,Balls bowled,Wickets taken,Maidens bowled,Batters Dismissed,Special Bowling Talent,Tournament
+44,5,1.0,3,2,104.0,10.0,111.0,105,3,79,6.0,13.0,10,No,,12,1,0,Opner,NO,National T20 2025
+44,14,2.0,3,1,183.0,10.0,116.0,207,3,120,0.0,1.0,11,yes,,29,0,0,0,no,National T20 2025
+44,9,2.0,R3,R5,529.0,10.0,715.0,256,10,371,0.0,10.0,10,yes,,66,0,0,0,No,QAT 2025
+44,9,4.0,R3,R5,72.0,4.0,84.0,493,10,742,,,DNB,DNB,,118,2,6,"1,5",No,QAT 2025
+44,12,2.0,3,6,375.0,10.0,533.0,82,10,199,0.0,1.0,10,yes,,62,2,1,"1,2",No,QAT 2025
+44,12,,3,6,,,,149,10,277,,,DNB,DNB,,124,3,4,"2,7,10",No,QAT 2025
+44,3,1.0,5,4,160.0,8.0,120.0,161,2,96,,,DNB,DNB,,20,0,0,0,No,Champions T20 cup 2024-25
+44,5,1.0,5,2,128.0,9.0,120.0,132,8,113,9.0,9.0,10,No,,18,0,0,0,No,Champions T20 cup 2024-25
+44,19,1.0,2,2,333.0,6.0,300.0,259,10,273,,,DNB,DNB,,57,1,1,2,No,President cup 2024-25
+44,19,1.0,2,2,165.0,10.0,225.0,169,3,262,4.0,13.0,10,yes,,39,1,0,2,No,President cup 2024-25
+44,20,2.0,7,5,98.0,10.0,229.0,370,10,706,0.0,3.0,10,yes,,136,1,3,3,No,President Trophy 2024-25
+44,20,3.0,7,5,288.0,10.0,518.0,18,1,23,0.0,7.0,10,yes,,6,0,0,0,No,President Trophy 2024-25
+44,21,2.0,7,8,113.0,10.0,215.0,179,10,262,0.0,4.0,11,yes,,93,5,1,"3,5,6,8,9",NO,President Trophy 2024-25
+44,21,4.0,7,8,198.0,10.0,354.0,292,10,457,0.0,6.0,10,yes,,86,1,4,7,No,President Trophy 2024-25

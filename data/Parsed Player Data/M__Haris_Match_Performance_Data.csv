@@ -1,0 +1,29 @@
+Player ID,Match ID,Innings Number,Team standing,Opposition standing,Total Runs Made by Own Team,Total Wickets Lost by Own Team,Total Balls Played by Own Team,Total Runs Made by Opposition Team,Total Wickets Lost by Opposition Team,Total Balls Played by Opposition Team,Runs made,Balls consumed,Batting position,Dismissed,Special Batting Talent,Balls bowled,Wickets taken,Maidens bowled,Batters Dismissed,Special Bowling Talent,Tournament
+15,14,1,R 1,R 2,301,10,177,279,10,521,34,43,7,YES,NA,NA,NA,NA,NA,NA,QAT
+15,14,3,R 1,R 2,321,10,454,162,10,3589,32,41,8,YES,NA,NA,NA,NA,NA,NA,QAT
+15,19,2,R 6,R 5,213,10,377,171,10,322,0,1,7,YES,NA,NA,NA,NA,NA,NA,QAT
+15,31,2,R 1,R 3,251,10,419,292,10,555,28,29,7,YES,NA,NA,NA,NA,NA,NA,QAT
+15,43,1,R 1,R 3,293,10,614,348,10,529,62,138,7,YES,NA,NA,NA,NA,NA,NA,QAT
+15,43,3,R 1,R 3,195,10,318,214,10,387,4,2,6,YES,NA,NA,NA,NA,NA,NA,QAT
+15,47,1,T 2,T 3,332,10,494,217,10,339,45,68,7,YES,NA,NA,NA,NA,NA,NA,QAT
+15,47,3,T 2,T 3,141,10,240,131,10,141,0,9,7,YES,NA,NA,NA,NA,NA,NA,QAT
+15,2,1,3,4,336,5,300,203,10,337,55,36,5,YES,NA,NA,NA,NA,NA,NA,Champions One Day
+15,4,2,3,1,105,10,142,231,10,270,3,7,5,YES,NA,NA,NA,NA,NA,NA,Champions One Day
+15,7,1,3,5,271,7,300,97,10,150,6,15,5,YES,NA,NA,NA,NA,NA,NA,Champions One Day
+15,9,2,3,1,324,10,297,344,7,300,19,14,1,YES,NA,NA,NA,NA,NA,NA,Champions One Day
+15,12,2,3,4,251,10,297,263,9,300,30,42,7,YES,NA,NA,NA,NA,NA,NA,Champions One Day
+15,2,1,1,4,216,3,120,181,10,115,55,37,3,YES,NA,NA,NA,NA,NA,NA,Champions T20
+15,4,1,1,3,162,5,120,150,7,120,25,18,4,YES,NA,NA,NA,NA,NA,NA,Champions T20
+15,7,2,1,2,167,5,120,170,6,120,22,16,3,YES,NA,NA,NA,NA,NA,NA,Champions T20
+15,9,1,1,5,190,4,120,185,9,120,7,6,3,YES,NA,NA,NA,NA,NA,NA,Champions T20
+15,11,2,1,4,170,4,120,168,7,120,61,35,3,YES,NA,NA,NA,NA,NA,NA,Champions T20
+15,14,1,1,3,168,10,120,169,7,114,7,9,3,YES,NA,NA,NA,NA,NA,NA,Champions T20
+15,17,1,1,2,147,9,120,118,10,111,19,11,3,YES,NA,NA,NA,NA,NA,NA,Champions T20
+15,20,2,1,5,133,4,84,131,10,120,52,30,3,NO,NA,NA,NA,NA,NA,NA,Champions T20
+15,22,1,1,2,199,5,120,124,10,115,21,15,3,YES,NA,NA,NA,NA,NA,NA,Champions T20
+15,23,2,9,2,275,10,493,415,10,670,41,71,7,YES,NA,NA,NA,NA,NA,NA,President's Trophy Grade-I
+15,23,4,9,2,197,10,295,221,3,246,0,7,7,YES,NA,NA,NA,NA,NA,NA,President's Trophy Grade-I
+15,31,2,9,6,199,10,376,353,10,596,16,39,7,YES,NA,NA,NA,NA,NA,NA,President's Trophy Grade-I
+15,31,4,9,6,277,6,636,335,5,494,18,47,7,NO,NA,NA,NA,NA,NA,NA,President's Trophy Grade-I
+15,33,2,9,7,147,10,419,346,10,617,16,34,7,YES,NA,NA,NA,NA,NA,NA,President's Trophy Grade-I
+15,33,4,9,7,306,10,453,110,3,96,55,73,7,NO,NA,NA,NA,NA,NA,NA,President's Trophy Grade-I
