@@ -64,7 +64,7 @@ df_agg = agg.add_runvalues(
 
 print(df_agg)
 
-# Rankings.
+# Rankings
 df_rank = rank_t20.batting_rankings(df_agg)
 
 print(df_rank)
