@@ -9,16 +9,28 @@ import constants_t20 as t20
 def strike_rate_factor(df, runs_made_col_name, balls_faced_col_name, sr_factor_col_name):
 
     # First set the Normalized Strike Rate:
-    # Norm_SR = 100 * (Runs Made / Balls Faced) / SR_BASELINE
+    # Norm_SR =  (Runs Made / Balls Faced) * / SR_BASELINE
     df[sr_factor_col_name] = np.where(
         df[runs_made_col_name].isna() | df[balls_faced_col_name].isna(), 
         t20.SR_FACTOR_DEFAULT,
-        (100 / t20.SR_BASELINE) * df[runs_made_col_name] / df[balls_faced_col_name]
+        (df[runs_made_col_name] / df[balls_faced_col_name]) / t20.SR_BASELINE
     )
 
     # Now clip on the Min/Max.
-    df.loc[df[sr_factor_col_name] < t20.SR_FACTOR_MIN, sr_factor_col_name] = t20.SR_FACTOR_MIN
-    df.loc[df[sr_factor_col_name] > t20.SR_FACTOR_MAX, sr_factor_col_name] = t20.SR_FACTOR_MAX
+    min_r = t20.SR_RANGE_MIN
+    max_r = t20.SR_RANGE_MAX
+    df.loc[df[sr_factor_col_name] < min_r, sr_factor_col_name] = min_r
+    df.loc[df[sr_factor_col_name] > max_r, sr_factor_col_name] = max_r
+
+    # Now scale to lie within the SR factor min/max in two steps:
+    min_v = t20.SR_FACTOR_MIN
+    max_v = t20.SR_FACTOR_MAX
+
+    # Step 1: Scale to lie in range [0, 1]
+    df[sr_factor_col_name] =  (df[sr_factor_col_name] - min_r) / (max_r - min_r)
+
+    # Step 2: Scale to lie in range [min_v, max_v]
+    df[sr_factor_col_name] =  (df[sr_factor_col_name] * (max_v - min_v)) + min_v
 
 
 # Compute the Tournament Calibre Factor for each (player, match, innings).
@@ -48,16 +60,9 @@ def opp_quality_factor(df, own_team_ranking, opposition_ranking, opp_quality_fac
 # Compute the batting position factor for each player (4 buckets- POS 1-3, 4-5, 6-8. 9-11)
 def batting_position_factor(df, runs_made_col_name, batting_position_col_name, bat_pos_factor_col_name):
     
-    # iterate through the dataframe, applying batting position multiplier to run values based on bucket
-    for index in df.index:
-            if 1 <= df.at[index, batting_position_col_name] <= 3:
-                df.at[index, bat_pos_factor_col_name] = (df.at[index, runs_made_col_name] * t20.POS_1_3)
-            
-            if 4 <= df.at[index, batting_position_col_name] <= 5:
-                df.at[index, bat_pos_factor_col_name] = (df.at[index, runs_made_col_name] * t20.POS_4_5)
-            
-            if 6 <= df.at[index, batting_position_col_name] <= 8:
-                df.at[index, bat_pos_factor_col_name] = (df.at[index, runs_made_col_name] * t20.POS_6_8)
-            
-            if 9 <= df.at[index, batting_position_col_name] <= 11:
-                df.at[index, bat_pos_factor_col_name] = (df.at[index, runs_made_col_name] * t20.POS_9_11)
+    df[bat_pos_factor_col_name] = t20.BATTING_POS_DEFAULT
+
+    df.loc[df[batting_position_col_name].isin([1, 2, 3]), bat_pos_factor_col_name] = t20.POS_1_3
+    df.loc[df[batting_position_col_name].isin([4, 5]), bat_pos_factor_col_name] = t20.POS_4_5
+    df.loc[df[batting_position_col_name].isin([6, 7, 8]), bat_pos_factor_col_name] = t20.POS_6_8
+    df.loc[df[batting_position_col_name].isin([9, 11]), bat_pos_factor_col_name] = t20.POS_9_11

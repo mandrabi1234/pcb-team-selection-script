@@ -15,21 +15,17 @@ SR_FACTOR_DEFAULT = 1.0
 
 # SR_BASELINE: 
 #   the strike rate which will correspond to a factor multiplier of 1.0
-SR_BASELINE = 110
+SR_BASELINE = 1.1
+SR_RANGE_MIN = 0.5
+SR_RANGE_MAX = 2.0
 
 # SR_FACTOR_MIN: 
-#   The Normalized SR (with ref to SR_BASELINE) below which all factor 
-#   values are set to this SR_FACTOR_MIN.
-#   Example: for a SR_BASELINE of 110 and actual SR of 50,
-#       The SR factor will be SR_FACTOR_MIN becayse 50/110 < SR_FACTOR_MIN.
-SR_FACTOR_MIN = 0.5
+#   The min value for the  Normalized SR (with ref to SR_BASELINE).
+SR_FACTOR_MIN = 0.85
 
 # SR_FACTOR_MAX: 
-#   The Normalized SR (with ref to SR_BASELINE) above which all factor 
-#   values are set to this SR_FACTOR_MAX.
-#   Example: for a SR_BASELINE of 110 and actual SR of 225,
-#       The SR factor will be SR_FACTOR_MAX becayse 225/110 > SR_FACTOR_MAX.
-SR_FACTOR_MAX = 2.0
+#   The max value for the  Normalized SR (with ref to SR_BASELINE).
+SR_FACTOR_MAX = 1.25
 
 
 ############################################################
@@ -38,12 +34,12 @@ TOURNAMENT_FACTOR_DEFAULT = 1.0
 
 # Set the factor values for various tournament names.
 TOURNAMENT_FACTOR_DICT = {
-    "Champions T20": 1.2,
+    "Champions T20": 1.05,
 
-    "Champions One Day": 1.2,
+    "Champions One Day": 1.05,
     "President's Cup One-Day": 1.0,
 
-    "QAT": 1.2,
+    "QAT": 1.05,
     "President's Trophy Grade-I": 1.0,
 
 }
@@ -72,14 +68,16 @@ OPP_QUALITY_FACTOR_MAX = 1.2
 ###############################################################
 # Batting Position Scaling Constants
 
+BATTING_POS_DEFAULT = 1.0
+
 # Batting Factor Multiplier for Batting Positions 1-3
-POS_1_3 = 0.9
+POS_1_3 = 0.95
 
 # Batting Factor Multiplier for Batting Positions 4-5
 POS_4_5 = 1.0
 
 # Batting Factor Multiplier for Batting Positions 6-8
-POS_6_8 = 1.1
+POS_6_8 = 1.05
 
 # Batting Factor Multiplier for Batting Positions 9-11
-POS_9_11 = 1.2
+POS_9_11 = 1.1
