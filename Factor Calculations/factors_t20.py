@@ -66,3 +66,17 @@ def batting_position_factor(df, runs_made_col_name, batting_position_col_name, b
     df.loc[df[batting_position_col_name].isin([4, 5]), bat_pos_factor_col_name] = t20.POS_4_5
     df.loc[df[batting_position_col_name].isin([6, 7, 8]), bat_pos_factor_col_name] = t20.POS_6_8
     df.loc[df[batting_position_col_name].isin([9, 11]), bat_pos_factor_col_name] = t20.POS_9_11
+
+# Compute the batting position factor for each player (4 buckets- POS 1-3, 4-5, 6-8. 9-11)
+def special_bat_talent_factor(df, special_bat_talent_col_name, special_bat_talent_factor_col_name):
+    
+    df[special_bat_talent_factor_col_name] = t20.BAT_TALENT_DEFAULT
+
+    df.loc[df[special_bat_talent_col_name] == 1.0, special_bat_talent_factor_col_name] = t20.BAT_TALENT_SPECIAL
+
+# Compute the bowling position factor for each player (4 buckets- POS 1-3, 4-5, 6-8. 9-11)
+def special_bowl_talent_factor(df, special_bowl_talent_col_name, special_bowl_talent_factor_col_name):
+    
+    df[special_bowl_talent_factor_col_name] = t20.BOWL_TALENT_DEFAULT
+
+    df.loc[df[special_bowl_talent_col_name] == 1.0, special_bowl_talent_factor_col_name] = t20.BOWL_TALENT_SPECIAL

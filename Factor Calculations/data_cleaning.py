@@ -21,3 +21,22 @@ def data_preprocessing(df):
     df.loc[df["Dismissed"] == "NO", "Dismissed"] = 0.0
     df.loc[df["Dismissed"].isna(), "Dismissed"] = 0.0    
     df["Dismissed"] = df["Dismissed"].astype(float)
+
+    # Convert Special Batting Talent Column from YES/NO to 1/0 (also correct some typos)
+    df.loc[df["Special Batting Talent"] == "YES", "Special Batting Talent"] = 1.0
+    df.loc[df["Special Batting Talent"] == "Yes", "Special Batting Talent"] = 1.0
+    df.loc[df["Special Batting Talent"] == "yes", "Special Batting Talent"] = 1.0
+    df.loc[df["Special Batting Talent"] == "", "Special Batting Talent"] = 0.0
+    df.loc[df["Special Batting Talent"] == "No", "Special Batting Talent"] = 0.0
+    df.loc[df["Special Batting Talent"].isna(), "Special Batting Talent"] = 0.0    
+    df["Special Batting Talent"] = df["Special Batting Talent"].astype(float)
+
+    
+    # Convert Special Bowling Talent Column from YES/NO to 1/0 (also correct some typos)
+    df.loc[df["Special Bowling Talent"] == "YES", "Special Bowling Talent"] = 1.0
+    df.loc[df["Special Bowling Talent"] == "Yes", "Special Bowling Talent"] = 1.0
+    df.loc[df["Special Bowling Talent"] == "yes", "Special Bowling Talent"] = 1.0
+    df.loc[df["Special Bowling Talent"] == "", "Special Bowling Talent"] = 0.0
+    df.loc[df["Special Bowling Talent"] == "No", "Special Bowling Talent"] = 0.0
+    df.loc[df["Special Bowling Talent"].isna(), "Special Bowling Talent"] = 0.0    
+    df["Special Bowling Talent"] = df["Special Bowling Talent"].astype(float)

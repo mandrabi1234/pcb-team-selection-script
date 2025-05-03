@@ -4,6 +4,7 @@ import os
 import pandas as pd
 import numpy as np
 import datetime
+from datetime import date
 pd.options.mode.chained_assignment = None  # default='warn'
 pd.set_option('display.max_columns', None)
 import matplotlib.pyplot as plt
@@ -45,12 +46,16 @@ ft20.tournament_calibre_factor(df_input, "Tournament", FACTOR_TOURNAMENT)
 # Set the Team Ranking diff (Opposition Quality) factor
 ft20.opp_quality_factor(df_input, "Team standing", "Opposition standing", FACTOR_OPP_QUALITY)
 
+# Set the Batting Position Factor
 ft20.batting_position_factor(df_input, "Runs made", "Batting position", FACTOR_BAT_POSITION)
+
+# Set the Special Batting Talent Factor
+ft20.special_bat_talent_factor(df_input, "Special Batting Talent", FACTOR_SPECIAL_BAT_TALENT)
 
 print(df_input)
 
 # Aggregation.
-batting_factors = [FACTOR_SR, FACTOR_TOURNAMENT, FACTOR_OPP_QUALITY, FACTOR_BAT_POSITION]
+batting_factors = [FACTOR_SR, FACTOR_TOURNAMENT, FACTOR_OPP_QUALITY, FACTOR_BAT_POSITION, FACTOR_SPECIAL_BAT_TALENT]
 df_agg = agg.add_runvalues(
     df_input, 
     RUNVALUE_COL,
@@ -68,3 +73,6 @@ print(df_agg)
 df_rank = rank_t20.batting_rankings(df_agg)
 
 print(df_rank)
+
+# Log test output in csv format: test_t20_rankings_output.csv 
+df_rank.to_csv(f"test_t20_rankings_output{str(date.today())}.csv", index=False)

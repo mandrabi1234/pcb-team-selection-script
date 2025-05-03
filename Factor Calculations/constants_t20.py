@@ -9,6 +9,9 @@ FACTOR_OPP_QUALITY = "Factor_Opp_Quality"
 
 FACTOR_BAT_POSITION = "Factor_Batting_Position"
 
+FACTOR_SPECIAL_BAT_TALENT = "Factor_Special_Batting_Talent"
+
+FACTOR_SPECIAL_BOWL_TALENT = "Factor_Special_Bowling_Talent"
 ############################################################
 # Strike Rate Scaling Constants.
 SR_FACTOR_DEFAULT = 1.0
@@ -81,3 +84,14 @@ POS_6_8 = 1.05
 
 # Batting Factor Multiplier for Batting Positions 9-11
 POS_9_11 = 1.1
+
+###############################################################
+# Special Factor Scaling Constants
+
+# Factor Multiplier for tagged Special Batting/Bowling Talents
+BAT_TALENT_SPECIAL = 1.1
+BOWL_TALENT_SPECIAL = 1.1
+
+# Factor Multiplier for everyone else
+BAT_TALENT_DEFAULT = 1.0
+BOWL_TALENT_DEFAULT = 1.0
