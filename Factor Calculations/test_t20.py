@@ -35,6 +35,14 @@ ft20.batting_position_factor(df_input, "Runs Made", "Batting Position", c_t20.FA
 # Set the Special Batting Talent Factor
 ft20.special_bat_talent_factor(df_input, "Special Batting Talent", c_t20.FACTOR_SPECIAL_BAT_TALENT)
 
+# Set the Special Bowling Talent Factor
+ft20.special_bat_talent_factor(df_input, "Special Bowling Talent", c_t20.FACTOR_SPECIAL_BOWL_TALENT)
+
+# Batter dismissed factor.
+ft20.batters_dismissed_position_factor(df_input, "Wickets Taken", "Batters Dismissed", c_t20.FACTOR_WICKETS_BATTER_POS_DISMISSED)
+
+# Economy Rate factor.
+ft20.economy_rate_factor(df_input, "Runs Given", "Balls Bowled", c_t20.FACTOR_ECON_RATE)
 
 print(df_input)
 
