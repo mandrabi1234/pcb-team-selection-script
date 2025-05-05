@@ -36,8 +36,13 @@ def strike_rate_factor(df, runs_made_col_name, balls_faced_col_name, sr_factor_c
 # Compute the Tournament Calibre Factor for each (player, match, innings).
 def tournament_calibre_factor(df, tournament_col_name, tournament_factor_col_name):
 
-    df[tournament_factor_col_name] = df[tournament_col_name].apply(
-        lambda x: t20.TOURNAMENT_FACTOR_DICT[x] if x in t20.TOURNAMENT_FACTOR_DICT else t20.TOURNAMENT_FACTOR_DEFAULT)
+    # Create a default column for Tournament Factor
+    df[tournament_factor_col_name] = t20.TOURNAMENT_FACTOR_DEFAULT 
+
+    # Apply factors based on substring matching -  
+    # The tournament naming conventions are not standardized across the board. This should bridge that gap
+    for keyword, factor in t20.TOURNAMENT_FACTOR_DICT.items():
+        df.loc[df["Tournament"].str.contains(keyword, case=False, na=False), tournament_factor_col_name] = factor
 
 
 

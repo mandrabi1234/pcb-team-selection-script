@@ -4,7 +4,7 @@
 
 MATCH_ID = "Match ID"
 PLAYER_ID = "Player ID"
-RUNS_MADE = "Runs made"
+RUNS_MADE = "Runs Made"
 DISMISSED_COL = "Dismissed"
 
 RUNVALUE_COL = "RunValues"

@@ -38,6 +38,10 @@ TOURNAMENT_FACTOR_DEFAULT = 1.0
 # Set the factor values for various tournament names.
 TOURNAMENT_FACTOR_DICT = {
     "Champions T20": 1.05,
+    
+    "T-20": 1.05,
+
+    "T20": 1.05,
 
     "Champions One Day": 1.05,
     "President's Cup One-Day": 1.0,

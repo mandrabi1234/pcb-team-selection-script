@@ -27,7 +27,7 @@ import rankings_t20 as rank_t20
 
 # Input data filename.
 DATA_DIRECTORY = "data"
-INPUT = r"m_ali_sample.csv"
+INPUT = "PCB Player Data - Filtered.csv"
 
 df_input = pd.read_csv(os.path.join("..", DATA_DIRECTORY, INPUT))
 
@@ -38,16 +38,16 @@ data_preprocessing(df_input)
 #df_input = df_input[df_input["Tournament"] == "Champions T20"]
 
 # Set the SR factor.
-ft20.strike_rate_factor(df_input, "Runs made", "Balls consumed", FACTOR_SR)
+ft20.strike_rate_factor(df_input, "Runs Made", "Balls Consumed", FACTOR_SR)
 
 # Set the Tournament factor.
 ft20.tournament_calibre_factor(df_input, "Tournament", FACTOR_TOURNAMENT)
 
 # Set the Team Ranking diff (Opposition Quality) factor
-ft20.opp_quality_factor(df_input, "Team standing", "Opposition standing", FACTOR_OPP_QUALITY)
+ft20.opp_quality_factor(df_input, "Team Standing", "Opposition Standing", FACTOR_OPP_QUALITY)
 
 # Set the Batting Position Factor
-ft20.batting_position_factor(df_input, "Runs made", "Batting position", FACTOR_BAT_POSITION)
+ft20.batting_position_factor(df_input, "Runs Made", "Batting Position", FACTOR_BAT_POSITION)
 
 # Set the Special Batting Talent Factor
 ft20.special_bat_talent_factor(df_input, "Special Batting Talent", FACTOR_SPECIAL_BAT_TALENT)
