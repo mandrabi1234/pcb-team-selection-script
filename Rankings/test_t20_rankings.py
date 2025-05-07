@@ -52,12 +52,22 @@ ft20.batting_position_factor(df_input, "Runs Made", "Batting Position", FACTOR_B
 # Set the Special Batting Talent Factor
 ft20.special_bat_talent_factor(df_input, "Special Batting Talent", FACTOR_SPECIAL_BAT_TALENT)
 
+# Set the Special Bowling Talent Factor
+ft20.special_bat_talent_factor(df_input, "Special Bowling Talent", FACTOR_SPECIAL_BOWL_TALENT)
+
+# Batter dismissed factor.
+ft20.batters_dismissed_position_factor(df_input, "Wickets Taken", "Batters Dismissed", FACTOR_WICKETS_BATTER_POS_DISMISSED)
+
+# Economy Rate factor.
+ft20.economy_rate_factor(df_input, "Runs Given", "Balls Bowled", FACTOR_ECON_RATE)
+
 print(df_input)
 
 # Aggregation.
 batting_factors = [FACTOR_SR, FACTOR_TOURNAMENT, FACTOR_OPP_QUALITY, FACTOR_BAT_POSITION, FACTOR_SPECIAL_BAT_TALENT]
-df_agg = agg.add_runvalues(
-    df_input, 
+df_bat_agg = agg.add_runvalues(
+    df_input,
+    RUN_AVG_COL, 
     RUNVALUE_COL,
     RUNVALUE_AVG_COL,
     BATTING_INNINGS_PLAYED,
@@ -67,12 +77,34 @@ df_agg = agg.add_runvalues(
     batting_factors
 )
 
-print(df_agg)
+bowling_factors = [FACTOR_ECON_RATE, FACTOR_WICKETS_BATTER_POS_DISMISSED, FACTOR_TOURNAMENT, FACTOR_OPP_QUALITY, FACTOR_SPECIAL_BOWL_TALENT]
+df_bowl_agg = agg.add_wicketvalues(
+    df_input, 
+    WICKETS_AVG_COL, 
+    WICKETVALUE_COL, 
+    WICKETVALUE_AVG_COL, 
+    PLAYER_ID, 
+    BOWLING_INNINGS_PLAYED, 
+    BALLS_BOWLED, 
+    WICKETS_COL, 
+    bowling_factors
+)
 
-# Rankings
-df_rank = rank_t20.batting_rankings(df_agg)
+print(df_bat_agg)
+print(df_bowl_agg)
 
-print(df_rank)
+# Batting Rankings
+df_bat_rank = rank_t20.batting_rankings(df_bat_agg, RUNVALUE_COL, RUNVALUE_AVG_COL)
 
-# Log test output in csv format: test_t20_rankings_output.csv 
-df_rank.to_csv(f"test_t20_rankings_output{str(date.today())}.csv", index=False)
+print(df_bat_rank)
+
+# Log test output in csv format: test_t20_batting_rankings_output.csv 
+df_bat_rank.to_csv(f"test_t20_rankings_bat_output{str(date.today())}.csv", index=False)
+
+# Bowling Rankings
+df_bowl_rank = rank_t20.bowling_rankings(df_bowl_agg, WICKETVALUE_COL, WICKETVALUE_AVG_COL)
+
+print(df_bowl_rank)
+
+# Log test output in csv format: test_t20_bowling_rankings_output.csv 
+df_bat_rank.to_csv(f"test_t20_rankings_bowl_output{str(date.today())}.csv", index=False)

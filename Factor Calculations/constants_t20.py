@@ -12,6 +12,10 @@ FACTOR_BAT_POSITION = "Factor_Batting_Position"
 FACTOR_SPECIAL_BAT_TALENT = "Factor_Special_Batting_Talent"
 
 FACTOR_SPECIAL_BOWL_TALENT = "Factor_Special_Bowling_Talent"
+
+FACTOR_WICKETS_BATTER_POS_DISMISSED = "Factor_Wickets_Batter_Pos_Dimissed"
+
+FACTOR_ECON_RATE = "Factor_Wickets_Economy_rate"
 ############################################################
 # Strike Rate Scaling Constants.
 SR_FACTOR_DEFAULT = 1.0
@@ -88,6 +92,49 @@ POS_6_8 = 1.05
 
 # Batting Factor Multiplier for Batting Positions 9-11
 POS_9_11 = 1.1
+
+
+###############################################################
+# Wickets Taken Batter Positions Scaling Constants
+
+WICKET_BAT_POS_DEFAULT = 1.0
+
+# Factor for Batter Dimissed at Positions 1-3
+WICKET_BAT_POS_FACTOR_DICT = {
+    0: 1.0,
+
+    1: 1.1,
+    2: 1.1,
+    3: 1.1,
+    4: 1.05,
+    5: 1.05,
+    6: 1.0,
+    7: 1.0,
+    8: 1.0,
+    9: 0.95,
+    10: 0.95,
+    11: 0.95
+}
+
+
+############################################################
+# Bowling Economy Rate Scaling Constants.
+ECON_RATE_FACTOR_DEFAULT = 1.0
+
+# ECON_RATE_BASELINE: 
+#   the economy rate which will correspond to a factor multiplier of 1.0
+ECON_RATE_BASELINE = 1.1
+ECON_RATE_RANGE_MIN = 0.8
+ECON_RATE_RANGE_MAX = 2.0
+
+# ECON_RATE_FACTOR_MIN: 
+#   The min value for the  Normalized ECON_RATE (with ref to ECON_RATE_BASELINE).
+ECON_RATE_FACTOR_MIN = 0.85
+
+# ECON_RATE_FACTOR_MAX: 
+#   The max value for the  Normalized ECON_RATE (with ref to ECON_RATE_BASELINE).
+ECON_RATE_FACTOR_MAX = 1.25
+
 
 ###############################################################
 # Special Factor Scaling Constants

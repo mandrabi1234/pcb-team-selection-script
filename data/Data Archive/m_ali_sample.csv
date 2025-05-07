@@ -1,21 +1,21 @@
-Player ID,Match ID,Innings Number,Team standing,Opposition standing,Total Runs Made by Own Team,Total Wickets Lost by Own Team,Total Balls Played by Own Team,Total Runs Made by Opposition Team,Total Wickets Lost by Opposition Team,Total Balls Played by Opposition Team,Runs made,Balls consumed,Batting position,Dismissed,Special Batting Talent,Balls bowled,Wickets taken,Maidens bowled,Batters Dismissed,Special Bowling Talent,Tournament
-13,23,1,1,R 6,451,10,601,107,7,204,2,9,10,YES,NA,84,2,6,"3,6",NA,QAT
-13,34,2,1,R 3,263,10,486,439,7,601,1,8,10,YES,NA,174,4,3,"1,2,3,8",NA,QAT
-13,45,2,R 1,R 4,297,10,593,171,10,286,2,7,10,NO,NA,112,4,2,"1,5,6,7",NA,QAT
-13,45,4,R 1,R 4,99,2,113,224,10,366,DNB,NA,NA,NA,NA,156,5,3,"1,2,4,7,11",NA,QAT
-13,46,2,1,2,410,10,799,171,10,270,16,39,9,YES,NA,97,4,7,"2,7,9,10",NA,QAT
-13,2,1,3,4,336,5,300,203,10,337,DNB,NA,NA,NA,NA,36,2,0,"1,3",NA,Champions One Day
-13,4,2,3,1,105,10,142,231,10,270,0,3,11,NO,NA,48,1,0,2,NA,Champions One Day
-13,7,1,3,5,271,7,300,97,10,150,DNB,NA,NA,NA,NA,24,0,0,NA,NA,Champions One Day
-13,9,2,3,1,324,10,297,344,7,300,0,1,11,YSE,NA,42,0,0,NA,NA,Champions One Day
-13,2,1,1,4,216,3,120,181,10,115,DNB,NA,NA,NA,NA,24,3,0,"2,8,9",NA,Champions T20
-13,4,1,1,3,162,5,120,150,7,120,DNB,NA,NA,NA,NA,24,1,0,1,NA,Champions T20
-13,7,2,1,2,167,5,120,170,6,120,DNB,NA,NA,NA,NA,24,0,0,NA,NA,Champions T20
-13,9,1,1,5,190,4,120,185,9,120,DNB,NA,NA,NA,NA,24,2,0,"4,8",NA,Champions T20
-13,11,2,1,4,170,4,120,168,7,120,DNB,NA,NA,NA,NA,24,4,0,"1,4,7,8",NA,Champions T20
-13,33,1,7,9,346,10,617,147,10,419,10,85,10,YES,NA,102,4,4,"1,4,7,9",NA,President's Trophy Grade-I
-13,33,4,7,9,110,3,96,306,10,453,DNB,NA,NA,NA,NA,126,3,4,"4,5,6",NA,President's Trophy Grade-I
-13,2,1,2,5,306,8,300,273,3,270,2,2,10,NO,NA,42,1,0,2,NA,President's Cup One-Day
-13,5,2,2,3,351,10,287,351,292,10,2,3,10,YES,NA,58,5,2,"2,5,8,10,11",NA,President's Cup One-Day
-13,12,1,2,1,249,9,270,156,9,215,7,8,10,NO,NA,36,0,0,NA,NA,President's Cup One-Day
-13,16,2,2,4,252,4,222,248,10,266,DNB,NA,NA,NA,NA,50,3,0,"1,7,10",NA,President's Cup One-Day
+Player ID,Match ID,Innings Number,Team Standing,Opposition Standing,Total Runs Made by Own Team,Total Wickets Lost by Own Team,Total Balls Played by Own Team,Total Runs Made by Opposition Team,Total Wickets Lost by Opposition Team,Total Balls Played by Opposition Team,Runs Made,Balls Consumed,Batting Position,Dismissed,Special Batting Talent,Balls Bowled,Wickets Taken,Maidens bowled,Batters Dismissed,Special Bowling Talent,Tournament,Runs Given
+13,23,1,1,R 6,451,10,601,107,7,204,2,9,10,YES,NA,84,2,6,"3,6",NA,QAT,60
+13,34,2,1,R 3,263,10,486,439,7,601,1,8,10,YES,NA,174,4,3,"1,2,3,8",NA,QAT,60
+13,45,2,R 1,R 4,297,10,593,171,10,286,2,7,10,NO,NA,112,4,2,"1,5,6,7",NA,QAT,60
+13,45,4,R 1,R 4,99,2,113,224,10,366,DNB,NA,NA,NA,NA,156,5,3,"1,2,4,7,11",NA,QAT,60
+13,46,2,1,2,410,10,799,171,10,270,16,39,9,YES,NA,97,4,7,"2,7,9,10",NA,QAT,60
+13,2,1,3,4,336,5,300,203,10,337,DNB,NA,NA,NA,NA,36,2,0,"1,3",NA,Champions One Day,60
+13,4,2,3,1,105,10,142,231,10,270,0,3,11,NO,NA,48,1,0,2,NA,Champions One Day,60
+13,7,1,3,5,271,7,300,97,10,150,DNB,NA,NA,NA,NA,24,0,0,NA,NA,Champions One Day,60
+13,9,2,3,1,324,10,297,344,7,300,0,1,11,YSE,NA,42,0,0,NA,NA,Champions One Day,60
+13,2,1,1,4,216,3,120,181,10,115,DNB,NA,NA,NA,NA,24,3,0,"2,8,9",NA,Champions T20,60
+13,4,1,1,3,162,5,120,150,7,120,DNB,NA,NA,NA,NA,24,1,0,1,NA,Champions T20,60
+13,7,2,1,2,167,5,120,170,6,120,DNB,NA,NA,NA,NA,24,0,0,NA,NA,Champions T20,60
+13,9,1,1,5,190,4,120,185,9,120,DNB,NA,NA,NA,NA,24,2,0,"4,8",NA,Champions T20,60
+13,11,2,1,4,170,4,120,168,7,120,DNB,NA,NA,NA,NA,24,4,0,"1,4,7,8",NA,Champions T20,60
+13,33,1,7,9,346,10,617,147,10,419,10,85,10,YES,NA,102,4,4,"1,4,7,9",NA,President's Trophy Grade-I,60
+13,33,4,7,9,110,3,96,306,10,453,DNB,NA,NA,NA,NA,126,3,4,"4,5,6",NA,President's Trophy Grade-I,60
+13,2,1,2,5,306,8,300,273,3,270,2,2,10,NO,NA,42,1,0,2,NA,President's Cup One-Day,60
+13,5,2,2,3,351,10,287,351,292,10,2,3,10,YES,NA,58,5,2,"2,5,8,10,11",NA,President's Cup One-Day,60
+13,12,1,2,1,249,9,270,156,9,215,7,8,10,NO,NA,36,0,0,NA,NA,President's Cup One-Day,60
+13,16,2,2,4,252,4,222,248,10,266,DNB,NA,NA,NA,NA,50,3,0,"1,7,10",NA,President's Cup One-Day,60

@@ -6,6 +6,7 @@ def data_preprocessing(df):
     # TODO: use constants for column names instead of hardcoding
 
 
+    print(df.columns)
     # Ensure all Runs Made text values are set to NaNs.
     df.loc[df["Runs Made"] == "DNB", "Runs Made"] = np.nan
 
@@ -26,6 +27,10 @@ def data_preprocessing(df):
     
     df["Team Standing"] = df["Team Standing"].astype(float)
     df["Opposition Standing"] = df["Opposition Standing"].astype(float)
+
+    # Convert Batters Dimissed to string (since it is comma separated).
+    df["Batters Dismissed"] = df["Batters Dismissed"].astype(str)
+    df.loc[df["Batters Dismissed"] == "nan", "Batters Dismissed"] = "0"
 
     # Convert Dimissed Column from YES/NO to 1/0 (also correct some typos)
     # Dismissed Tags
@@ -112,7 +117,7 @@ def data_preprocessing(df):
     df.loc[df["Balls Consumed"] == "n/a", "Balls Consumed"] = np.nan
     df.loc[df["Balls Consumed"] == "n/A", "Balls Consumed"] = np.nan
     df.loc[df["Balls Consumed"] == "No", "Balls Consumed"] = np.nan
-    df["Balls Consumed"] = pd.to_numeric(df["Balls Consumed"].str.replace('`', '', regex=False), errors='coerce')
+    #df["Balls Consumed"] = pd.to_numeric(df["Balls Consumed"].str.replace('`', '', regex=False), errors='coerce')
     df["Balls Consumed"] = df["Balls Consumed"].astype(float)
 
     # # Convert Special Bowling Talent Column from YES/NO to 1/0 (also correct some typos)

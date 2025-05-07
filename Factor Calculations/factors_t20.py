@@ -85,3 +85,48 @@ def special_bowl_talent_factor(df, special_bowl_talent_col_name, special_bowl_ta
     df[special_bowl_talent_factor_col_name] = t20.BOWL_TALENT_DEFAULT
 
     df.loc[df[special_bowl_talent_col_name] == 1.0, special_bowl_talent_factor_col_name] = t20.BOWL_TALENT_SPECIAL
+
+
+# Compute factor for position of batters dismissed.
+def batters_dismissed_position_factor(df, wickets_taken_col, batter_pos_col, batter_pos_dimissed_factor_col):
+
+    # Create a default column for Batters Dismissed Factor
+    df[batter_pos_dimissed_factor_col] = t20.WICKET_BAT_POS_DEFAULT 
+
+    # Apply factors based on batting position
+    df[batter_pos_dimissed_factor_col] = np.where(
+        df[wickets_taken_col] > 0,
+        df[batter_pos_col].apply(
+            lambda x: sum(t20.WICKET_BAT_POS_FACTOR_DICT[int(i)] for i in x.split(','))
+            )/df[wickets_taken_col],
+        t20.WICKET_BAT_POS_DEFAULT
+    )
+
+
+# Compute the Economy Rate Factor for each (player, match, innings).
+def economy_rate_factor(df, runs_given_col, balls_bowled_col, econ_rate_factor_col):
+
+    # First set the Normalized Economy Rate:
+    # Norm_Econ_Rate =  (Runs Given / Balls Bowled) * / Econ_Rate_BASELINE
+    df[econ_rate_factor_col] = np.where(
+        df[runs_given_col].isna() | df[balls_bowled_col].isna(), 
+        t20.ECON_RATE_FACTOR_DEFAULT,
+        (df[runs_given_col] / df[balls_bowled_col]) / t20.ECON_RATE_BASELINE
+    )
+
+    # Now clip on the Min/Max.
+    min_r = t20.ECON_RATE_RANGE_MIN
+    max_r = t20.ECON_RATE_RANGE_MAX
+    df.loc[df[econ_rate_factor_col] < min_r, econ_rate_factor_col] = min_r
+    df.loc[df[econ_rate_factor_col] > max_r, econ_rate_factor_col] = max_r
+
+    # Now scale to lie within the Econ Rate factor min/max in two steps:
+    min_v = t20.ECON_RATE_FACTOR_MIN
+    max_v = t20.ECON_RATE_FACTOR_MAX
+
+    # Step 1: Scale to lie in range [1, 0]
+    df[econ_rate_factor_col] =  1 - (df[econ_rate_factor_col] - min_r) / (max_r - min_r)
+
+    # Step 2: Scale to lie in range [min_v, max_v]
+    df[econ_rate_factor_col] =  (df[econ_rate_factor_col] * (max_v - min_v)) + min_v
+
