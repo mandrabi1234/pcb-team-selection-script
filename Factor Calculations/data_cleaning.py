@@ -117,8 +117,19 @@ def data_preprocessing(df):
     df.loc[df["Balls Consumed"] == "n/a", "Balls Consumed"] = np.nan
     df.loc[df["Balls Consumed"] == "n/A", "Balls Consumed"] = np.nan
     df.loc[df["Balls Consumed"] == "No", "Balls Consumed"] = np.nan
-    #df["Balls Consumed"] = pd.to_numeric(df["Balls Consumed"].str.replace('`', '', regex=False), errors='coerce')
+    df["Balls Consumed"] = pd.to_numeric(df["Balls Consumed"].str.replace('`', '', regex=False), errors='coerce')
     df["Balls Consumed"] = df["Balls Consumed"].astype(float)
+
+    
+
+    # Set the Tournament Names to lower case.
+    df["Tournament"] = df["Tournament"].str.lower()
+
+    # Correct for T20 Tournament Names
+    df.loc[df["Tournament"].str.contains("national t20"), "Tournament"] = "national t20"
+    df.loc[df["Tournament"].str.contains("national t-20"), "Tournament"] = "national t20"
+
+    df.loc[df["Tournament"].str.contains("champions t20"), "Tournament"] = "champions t20"
 
     # # Convert Special Bowling Talent Column from YES/NO to 1/0 (also correct some typos)
     # df.loc[df["Special Bowling Talent"] == "YES", "Special Bowling Talent"] = 1.0
