@@ -35,7 +35,7 @@ df_input = pd.read_csv(os.path.join("..", DATA_DIRECTORY, INPUT))
 data_preprocessing(df_input)
 
 # Only keep T20 data.
-#df_input = df_input[df_input["Tournament"] == "Champions T20"]
+df_input = df_input[df_input["Tournament"].isin(["psl", "champions t20", "national t20"])]
 
 # Set the SR factor.
 ft20.strike_rate_factor(df_input, "Runs Made", "Balls Consumed", FACTOR_SR)
@@ -52,16 +52,11 @@ ft20.batting_position_factor(df_input, "Runs Made", "Batting Position", FACTOR_B
 # Set the Special Batting Talent Factor
 ft20.special_bat_talent_factor(df_input, "Special Batting Talent", FACTOR_SPECIAL_BAT_TALENT)
 
-# Set the Special Bowling Talent Factor
-ft20.special_bat_talent_factor(df_input, "Special Bowling Talent", FACTOR_SPECIAL_BOWL_TALENT)
+#print(df_input)
+#print(len(df_input["Player ID"].unique()))
 
-# Batter dismissed factor.
-ft20.batters_dismissed_position_factor(df_input, "Wickets Taken", "Batters Dismissed", FACTOR_WICKETS_BATTER_POS_DISMISSED)
 
-# Economy Rate factor.
-ft20.economy_rate_factor(df_input, "Runs Given", "Balls Bowled", FACTOR_ECON_RATE)
-
-print(df_input)
+## BATTING
 
 # Aggregation.
 batting_factors = [FACTOR_SR, FACTOR_TOURNAMENT, FACTOR_OPP_QUALITY, FACTOR_BAT_POSITION, FACTOR_SPECIAL_BAT_TALENT]
@@ -77,6 +72,29 @@ df_bat_agg = agg.add_runvalues(
     batting_factors
 )
 
+print(df_bat_agg)
+#print(len(df_bat_agg["Player ID"].unique()))
+
+# Batting Rankings
+df_bat_rank = rank_t20.batting_rankings(df_bat_agg, RUNVALUE_COL, RUNVALUE_AVG_COL)
+
+#print(df_bat_rank)
+#print(len(df_bat_rank["Player ID"].unique()))
+
+# Log test output in csv format: test_t20_batting_rankings_output.csv 
+df_bat_rank.to_csv(f"test_t20_rankings_bat_output{str(date.today())}.csv", index=False)
+
+
+## BOWLING
+#Set the Special Bowling Talent Factor
+ft20.special_bat_talent_factor(df_input, "Special Bowling Talent", FACTOR_SPECIAL_BOWL_TALENT)
+
+#Batter dismissed factor.
+ft20.batters_dismissed_position_factor(df_input, "Wickets Taken", "Batters Dismissed", FACTOR_WICKETS_BATTER_POS_DISMISSED)
+
+#Economy Rate factor.
+ft20.economy_rate_factor(df_input, "Runs Given", "Balls Bowled", FACTOR_ECON_RATE)
+
 bowling_factors = [FACTOR_ECON_RATE, FACTOR_WICKETS_BATTER_POS_DISMISSED, FACTOR_TOURNAMENT, FACTOR_OPP_QUALITY, FACTOR_SPECIAL_BOWL_TALENT]
 df_bowl_agg = agg.add_wicketvalues(
     df_input, 
@@ -89,17 +107,7 @@ df_bowl_agg = agg.add_wicketvalues(
     WICKETS_COL, 
     bowling_factors
 )
-
-print(df_bat_agg)
 print(df_bowl_agg)
-
-# Batting Rankings
-df_bat_rank = rank_t20.batting_rankings(df_bat_agg, RUNVALUE_COL, RUNVALUE_AVG_COL)
-
-print(df_bat_rank)
-
-# Log test output in csv format: test_t20_batting_rankings_output.csv 
-df_bat_rank.to_csv(f"test_t20_rankings_bat_output{str(date.today())}.csv", index=False)
 
 # Bowling Rankings
 df_bowl_rank = rank_t20.bowling_rankings(df_bowl_agg, WICKETVALUE_COL, WICKETVALUE_AVG_COL)
