@@ -34,6 +34,8 @@ df_input = pd.read_csv(os.path.join("..", DATA_DIRECTORY, INPUT))
 
 player_mapping = pd.read_csv(os.path.join("..", DATA_DIRECTORY, INPUT2))
 
+
+
 # Data preprocessing (cleaning)
 data_preprocessing(df_input)
 
@@ -126,4 +128,4 @@ print(df_bowl_rank)
 
 
 # Log test output in csv format: test_t20_bowling_rankings_output.csv 
-df_bat_rank.to_csv(f"test_t20_rankings_bowl_output{str(date.today())}.csv", index=False)
+df_bowl_rank.to_csv(f"test_t20_rankings_bowl_output{str(date.today())}.csv", index=False)
