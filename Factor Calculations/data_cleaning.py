@@ -6,7 +6,23 @@ def data_preprocessing(df):
     # TODO: use constants for column names instead of hardcoding
 
 
-    print(df.columns)
+    # print(df.columns)
+    df["Wickets Taken"].fillna(0, inplace=True)
+    df.loc[df["Wickets Taken"] == "*", "Wickets Taken"] = 0
+
+    df["Batters Dismissed"].fillna(0, inplace=True)
+    df.loc[df["Batters Dismissed"] == "*", "Batters Dismissed"] = 0
+    df.loc[df["Batters Dismissed"] == "N/a", "Batters Dismissed"] = 0
+
+    df["Wickets Taken"] = pd.to_numeric(df["Wickets Taken"], errors="coerce").fillna(0).astype("Int64")
+
+    # print(df['Wickets Taken'].dtype)
+    # print(df["Wickets Taken"].unique())
+    # print(df['Batters Dismissed'].dtype)
+    # print(df["Batters Dismissed"].unique())
+    df["Balls Bowled"] = pd.to_numeric(df["Balls Bowled"], errors="coerce").fillna(0).astype("Int64")
+    df["Runs Given"] = pd.to_numeric(df["Runs Given"], errors="coerce").fillna(0).astype("Int64")
+
     # Ensure all Runs Made text values are set to NaNs.
     df.loc[df["Runs Made"] == "DNB", "Runs Made"] = np.nan
 
@@ -34,6 +50,8 @@ def data_preprocessing(df):
 
     # Convert Dimissed Column from YES/NO to 1/0 (also correct some typos)
     # Dismissed Tags
+    df.loc[df["Dismissed"] == "YES ", "Dismissed"] = 1.0
+    df.loc[df["Dismissed"] == "yes ", "Dismissed"] = 1.0
     df.loc[df["Dismissed"] == "YES", "Dismissed"] = 1.0
     df.loc[df["Dismissed"] == "Yes", "Dismissed"] = 1.0
     df.loc[df["Dismissed"] == "YSE", "Dismissed"] = 1.0
@@ -49,6 +67,8 @@ def data_preprocessing(df):
     df.loc[df["Dismissed"] == "Run out", "Dismissed"] = 1.0
     
     # Not Dismissed Tags
+    df.loc[df["Dismissed"] == "no ", "Dismissed"] = 1.0
+    df.loc[df["Dismissed"] == "NO ", "Dismissed"] = 0.0
     df.loc[df["Dismissed"] == "Nout out", "Dismissed"] = 0.0
     df.loc[df["Dismissed"] == "ABSENT HURT", "Dismissed"] = 0.0    
     df.loc[df["Dismissed"] == "Absent Hurt", "Dismissed"] = 0.0
@@ -73,6 +93,7 @@ def data_preprocessing(df):
     df["Dismissed"] = df["Dismissed"].astype(float)
 
     # Convert Special Batting Talent Column from YES/NO to 1/0 (also correct some typos)
+    df.loc[df["Special Batting Talent"] == "yes ", "Special Batting Talent"] = 1.0
     df.loc[df["Special Batting Talent"] == "YES", "Special Batting Talent"] = 1.0
     df.loc[df["Special Batting Talent"] == "Yes", "Special Batting Talent"] = 1.0
     df.loc[df["Special Batting Talent"] == "yes", "Special Batting Talent"] = 1.0

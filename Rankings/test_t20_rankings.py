@@ -27,9 +27,12 @@ import rankings_t20 as rank_t20
 
 # Input data filename.
 DATA_DIRECTORY = "data"
-INPUT = "PCB Player Data - Filtered.csv"
+INPUT = "Filtered PCB Player Data - Final 582025"
+INPUT2 = "player mapping.csv"
 
 df_input = pd.read_csv(os.path.join("..", DATA_DIRECTORY, INPUT))
+
+player_mapping = pd.read_csv(os.path.join("..", DATA_DIRECTORY, INPUT2))
 
 # Data preprocessing (cleaning)
 data_preprocessing(df_input)
@@ -72,13 +75,19 @@ df_bat_agg = agg.add_runvalues(
     batting_factors
 )
 
-print(df_bat_agg)
+def player_map(df_map, df_input, player_name_col, player_id_col):
+    id_to_name = pd.Series(df_map[player_name_col].values, index=df_map[player_id_col]).to_dict()
+    df_input[player_name_col] = df_input[player_id_col].map(id_to_name)
+    df_output = df_input.loc[:, [player_name_col] + [col for col in df_input.columns if col != player_name_col]]
+    return df_output
+
 #print(len(df_bat_agg["Player ID"].unique()))
 
 # Batting Rankings
 df_bat_rank = rank_t20.batting_rankings(df_bat_agg, RUNVALUE_COL, RUNVALUE_AVG_COL)
+df_bat_rank = player_map(player_mapping, df_bat_rank, "Player Name", "Player ID")
 
-#print(df_bat_rank)
+print(df_bat_rank)
 #print(len(df_bat_rank["Player ID"].unique()))
 
 # Log test output in csv format: test_t20_batting_rankings_output.csv 
@@ -107,12 +116,14 @@ df_bowl_agg = agg.add_wicketvalues(
     WICKETS_COL, 
     bowling_factors
 )
-print(df_bowl_agg)
+# print(df_bowl_agg)
 
 # Bowling Rankings
 df_bowl_rank = rank_t20.bowling_rankings(df_bowl_agg, WICKETVALUE_COL, WICKETVALUE_AVG_COL)
+df_bowl_rank = player_map(player_mapping, df_bowl_rank, "Player Name", "Player ID")
 
 print(df_bowl_rank)
+
 
 # Log test output in csv format: test_t20_bowling_rankings_output.csv 
 df_bat_rank.to_csv(f"test_t20_rankings_bowl_output{str(date.today())}.csv", index=False)

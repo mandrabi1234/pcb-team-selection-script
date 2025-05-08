@@ -78,6 +78,8 @@ def add_wicketvalues(df, wickets_avg_col, wicketvalue_col, wicketvalue_avg_col, 
 
     # Now group by and sum.
     cols_to_sum = [wickets_col, wicketvalue_col, total_played_col]
+    df_filtered[wicketvalue_col] = pd.to_numeric(df_filtered[wicketvalue_col], errors='coerce')
+
     df_filtered = df_filtered.groupby(player_col)[cols_to_sum].sum(numeric_only=True).reset_index()
     
     # Also add the average columns.
