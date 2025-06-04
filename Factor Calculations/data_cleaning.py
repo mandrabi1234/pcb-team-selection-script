@@ -13,6 +13,20 @@ def data_preprocessing(df):
     df["Batters Dismissed"].fillna(0, inplace=True)
     df.loc[df["Batters Dismissed"] == "*", "Batters Dismissed"] = 0
     df.loc[df["Batters Dismissed"] == "N/a", "Batters Dismissed"] = 0
+    df.loc[df["Batters Dismissed"] == "", "Batters Dismissed"] = np.nan
+    df.loc[df["Batters Dismissed"] == "", "Batters Dismissed"] = 0    
+    df.loc[df["Batters Dismissed"] == "DNB", "Batters Dismissed"] = np.nan
+    df.loc[df["Runs Given"] == "DNB", "Runs Given"] = np.nan
+    df.loc[df["Wickets Taken"] == "DNB", "Wickets Taken"] = np.nan
+    df.loc[df["Maidens Bowled"] == "DNB", "Maidens Bowled"] = np.nan
+    df.loc[df["Balls Bowled"] == "DNB", "Balls Bowled"] = np.nan
+    
+    df.loc[df["Batters Dismissed"] == "DNP", "Batters Dismissed"] = np.nan
+    df.loc[df["Runs Given"] == "DNP", "Runs Given"] = np.nan
+    df.loc[df["Wickets Taken"] == "DNP", "Wickets Taken"] = np.nan
+    df.loc[df["Maidens Bowled"] == "DNP", "Maidens Bowled"] = np.nan
+    df.loc[df["Balls Bowled"] == "DNP", "Balls Bowled"] = np.nan
+    
 
     df["Wickets Taken"] = pd.to_numeric(df["Wickets Taken"], errors="coerce").fillna(0).astype("Int64")
 
@@ -152,24 +166,26 @@ def data_preprocessing(df):
 
     df.loc[df["Tournament"].str.contains("champions t20"), "Tournament"] = "champions t20"
 
-    # # Convert Special Bowling Talent Column from YES/NO to 1/0 (also correct some typos)
-    # df.loc[df["Special Bowling Talent"] == "YES", "Special Bowling Talent"] = 1.0
-    # df.loc[df["Special Bowling Talent"] == "Yes", "Special Bowling Talent"] = 1.0
-    # df.loc[df["Special Bowling Talent"] == "yes", "Special Bowling Talent"] = 1.0
-    # df.loc[df["Special Bowling Talent"] == "", "Special Bowling Talent"] = 0.0
-    # df.loc[df["Special Bowling Talent"] == "No", "Special Bowling Talent"] = 0.0
-    # df.loc[df["Special Bowling Talent"].isna(), "Special Bowling Talent"] = 0.0 
-    # df.loc[df["Special Bowling Talent"] == "Abandoned", "Special Bowling Talent"] = np.nan
-    # df.loc[df["Special Bowling Talent"] == "Did Not Play", "Special Bowling Talent"] = np.nan
-    # df.loc[df["Special Bowling Talent"] == "Did not Play", "Special Bowling Talent"] = np.nan
-    # df.loc[df["Special Bowling Talent"] == "Did Not play", "Special Bowling Talent"] = np.nan
-    # df.loc[df["Special Bowling Talent"] == "Did not play", "Special Bowling Talent"] = np.nan
-    # df.loc[df["Special Bowling Talent"] == "-", "Special Bowling Talent"] = np.nan
-    # df.loc[df["Special Bowling Talent"] == "N/a", "Special Bowling Talent"] = np.nan
-    # df.loc[df["Special Bowling Talent"] == "N/A", "Special Bowling Talent"] = np.nan
-    # df.loc[df["Special Bowling Talent"] == "n/a", "Special Bowling Talent"] = np.nan
-    # df.loc[df["Special Bowling Talent"] == "n/A", "Special Bowling Talent"] = np.nan 
-    # df.loc[df["Special Bowling Talent"] == "ABND", "Special Bowlilng Talent"] = np.nan
+    # Convert Special Bowling Talent Column from YES/NO to 1/0 (also correct some typos)
+    df.loc[df["Special Bowling Talent"] == "YES", "Special Bowling Talent"] = 1.0
+    df.loc[df["Special Bowling Talent"] == "Yes", "Special Bowling Talent"] = 1.0
+    df.loc[df["Special Bowling Talent"] == "yes", "Special Bowling Talent"] = 1.0
+    df.loc[df["Special Bowling Talent"] == "", "Special Bowling Talent"] = 0.0
+    df.loc[df["Special Bowling Talent"] == "No", "Special Bowling Talent"] = 0.0
+    df.loc[df["Special Bowling Talent"].isna(), "Special Bowling Talent"] = 0.0 
+    df.loc[df["Special Bowling Talent"] == "Abandoned", "Special Bowling Talent"] = np.nan
+    df.loc[df["Special Bowling Talent"] == "Did Not Play", "Special Bowling Talent"] = np.nan
+    df.loc[df["Special Bowling Talent"] == "Did not Play", "Special Bowling Talent"] = np.nan
+    df.loc[df["Special Bowling Talent"] == "Did Not play", "Special Bowling Talent"] = np.nan
+    df.loc[df["Special Bowling Talent"] == "Did not play", "Special Bowling Talent"] = np.nan
+    df.loc[df["Special Bowling Talent"] == "-", "Special Bowling Talent"] = np.nan
+    df.loc[df["Special Bowling Talent"] == "N/a", "Special Bowling Talent"] = np.nan
+    df.loc[df["Special Bowling Talent"] == "N/A", "Special Bowling Talent"] = np.nan
+    df.loc[df["Special Bowling Talent"] == "n/a", "Special Bowling Talent"] = np.nan
+    df.loc[df["Special Bowling Talent"] == "n/A", "Special Bowling Talent"] = np.nan 
+    df.loc[df["Special Bowling Talent"] == "ABND", "Special Bowling Talent"] = np.nan
+    df.loc[df["Special Bowling Talent"] == "DNP", "Special Bowling Talent"] = np.nan
+    df.loc[df["Special Bowling Talent"] == "DNB", "Special Bowling Talent"] = np.nan
   
-    # df["Special Bowling Talent"] = df["Special Bowling Talent"].astype(float)
+    df["Special Bowling Talent"] = df["Special Bowling Talent"].astype(float)
 

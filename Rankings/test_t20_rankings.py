@@ -27,8 +27,8 @@ import rankings_t20 as rank_t20
 
 # Input data filename.
 DATA_DIRECTORY = "data"
-INPUT = "Filtered PCB Player Data - Final 582025"
-INPUT2 = "player mapping.csv"
+INPUT = "Combined PCB Player Data - 632025 240AM T20 Data.csv"
+INPUT2 = "player_mapping.csv"
 
 df_input = pd.read_csv(os.path.join("..", DATA_DIRECTORY, INPUT))
 
