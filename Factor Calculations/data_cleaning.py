@@ -166,6 +166,8 @@ def data_preprocessing(df):
 
     df.loc[df["Tournament"].str.contains("champions t20"), "Tournament"] = "champions t20"
 
+    df.loc[df["Tournament"].str.contains("psl"), "Tournament"] = "psl"
+
     # Convert Special Bowling Talent Column from YES/NO to 1/0 (also correct some typos)
     df.loc[df["Special Bowling Talent"] == "YES", "Special Bowling Talent"] = 1.0
     df.loc[df["Special Bowling Talent"] == "Yes", "Special Bowling Talent"] = 1.0
