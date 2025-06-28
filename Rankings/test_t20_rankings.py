@@ -25,15 +25,17 @@ import factors_t20 as ft20
 import rankings_t20 as rank_t20
 
 
-# Input data filename.
-DATA_DIRECTORY = "data"
-INPUT = "Combined PCB Player Data - 632025 240AM T20 Data.csv"
-INPUT2 = "player_mapping.csv"
+# # Input data filename.
+# DATA_DIRECTORY = "data"
+# INPUT = "Combined PCB Player Data - 632025 240AM T20 Data.csv"
+# INPUT2 = "player_mapping.csv"
 
-df_input = pd.read_csv(os.path.join("..", DATA_DIRECTORY, INPUT))
+# df_input = pd.read_csv(os.path.join("..", DATA_DIRECTORY, INPUT))
 
-player_mapping = pd.read_csv(os.path.join("..", DATA_DIRECTORY, INPUT2))
+# player_mapping = pd.read_csv(os.path.join("..", DATA_DIRECTORY, INPUT2))
 
+df_input = pd.read_csv(r"C:\Users\mohia\OneDrive\Documents\GitHub\pcb-team-selection-script\data\PCB Data Collection Template - PCB Data Entry T20.csv")
+player_mapping = pd.read_csv(r"C:\Users\mohia\Downloads\Rankings_UI_fully_dynamic_tabbed_downloadable\data\player_mapping.csv")
 
 
 # Data preprocessing (cleaning)
@@ -65,6 +67,7 @@ ft20.special_bat_talent_factor(df_input, "Special Batting Talent", FACTOR_SPECIA
 
 # Aggregation.
 batting_factors = [FACTOR_SR, FACTOR_TOURNAMENT, FACTOR_OPP_QUALITY, FACTOR_BAT_POSITION, FACTOR_SPECIAL_BAT_TALENT]
+print("----Batting Factors----\n", batting_factors)
 df_bat_agg = agg.add_runvalues(
     df_input,
     RUN_AVG_COL, 

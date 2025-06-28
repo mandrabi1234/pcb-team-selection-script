@@ -60,6 +60,7 @@ def data_preprocessing(df):
 
     # Convert Batters Dimissed to string (since it is comma separated).
     df["Batters Dismissed"] = df["Batters Dismissed"].astype(str)
+    df.loc[df["Batters Dismissed"] == "N0", "Batters Dismissed"] = "0"
     df.loc[df["Batters Dismissed"] == "nan", "Batters Dismissed"] = "0"
 
     # Convert Dimissed Column from YES/NO to 1/0 (also correct some typos)
@@ -114,6 +115,7 @@ def data_preprocessing(df):
     df.loc[df["Special Batting Talent"] == "", "Special Batting Talent"] = 0.0
     df.loc[df["Special Batting Talent"] == "No", "Special Batting Talent"] = 0.0
     df.loc[df["Special Batting Talent"] == "NO", "Special Batting Talent"] = 0.0
+    df.loc[df["Special Batting Talent"] == "N0", "Special Batting Talent"] = 0.0
     df.loc[df["Special Batting Talent"] == "no", "Special Batting Talent"] = 0.0
     df.loc[df["Special Batting Talent"].isna(), "Special Batting Talent"] = 0.0 
     df.loc[df["Special Batting Talent"] == "DNB", "Special Batting Talent"] = np.nan
@@ -166,6 +168,13 @@ def data_preprocessing(df):
 
     df.loc[df["Tournament"].str.contains("champions t20"), "Tournament"] = "champions t20"
 
+    # df.loc[df["Tournament"].str.contains("t20"), "Tournament"] = "t20"
+    # df.loc[df["Tournament"].str.contains("T20"), "Tournament"] = "t20"
+    # df.loc[df["Tournament"].str.contains("T-20"), "Tournament"] = "t20"
+    # df.loc[df["Tournament"].str.contains("t20"), "Tournament"] = "t20"
+    
+    
+
     df.loc[df["Tournament"].str.contains("psl"), "Tournament"] = "psl"
 
     # Convert Special Bowling Talent Column from YES/NO to 1/0 (also correct some typos)
@@ -188,6 +197,6 @@ def data_preprocessing(df):
     df.loc[df["Special Bowling Talent"] == "ABND", "Special Bowling Talent"] = np.nan
     df.loc[df["Special Bowling Talent"] == "DNP", "Special Bowling Talent"] = np.nan
     df.loc[df["Special Bowling Talent"] == "DNB", "Special Bowling Talent"] = np.nan
-  
-    df["Special Bowling Talent"] = df["Special Bowling Talent"].astype(float)
+    df["Special Bowling Talent"] = pd.to_numeric(df["Special Bowling Talent"], errors="coerce")
+    # df["Special Bowling Talent"] = df["Special Bowling Talent"].astype(float)
 
